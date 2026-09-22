@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel Financeiro · Valoriza</title>
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADo0lEQVR42u1WXUybVRh+zjlff752nQs0FJp01gtD4joz0pshjZN5twvnkDZOLrggXWbiANnmcHIFCMm8dokaEqLILuoFC7qigWQxlgu3GEhw7IJtxRubbeV3k4T69fGC9XPVbrSNyRLDSd6r733Pec7znuf5XgGAeIZL4hmvHQA7ALSSEUsJKSVI5oUQAmTpghLFylAIASklDMMo+K2cw4tuQe4AwzDg8/nQ3t6OWCyG6elpdHV1gSR0XS+7DXxaCCEIgFarlQMDA8yt9bV1JpNJ1tfX0+v1cnx8nEIIM7+EePrhUkq6XC5OTU2RJMfGxhgKhehwOMy8U++dIkkee/MYAVDTtP8GgJSSAHh57DJJ8t2TJwuC9Pv9fLD+gPPz87RoFkopS2Gi8IfcLcLhMEmyt7eXAGixWKiUIgC6XC4zL9ee1tbWUll4Mv1CCCZ+SjCZTNJqtVIpRU0pKqXocDjY0tJitqmyspLLS8tcTC5S1/WiWZBP0jpJeL1eBAL7cWn0EjY3N0ESfxoGDMPAvpf24dCrh7bMRNOQTqdx4ZML2Pv8XrS1tSGbzUIpVZ4KchQHg0GurqwxEolQCEGn08m6ujp2dHRwdnaWQ0NDBEC73U7nLief27OHqd9TTKVS3O3aXZQq5HbQNjY2kNnMgCSUUshkMpiZmUE0GkU8HkcikcDg4CBeOXgQqysr6O/vh8fjQfRE1KwpmYHc6/f5fFxYuMXOzvfzPCEXzc1hDg8PU9d1Kl3nLr+fTqeTc3O/cnHxN1ZUVDx6I6K0RyjE3x7w7fh3vHIlTiEElVKUUtJi2ZLa4cOv8+UDBwiAnrea2bi0RAB8OxyhYZBnTp/Ja2lJKsgVHT/+DtP3l9jU1GQ6Yo4ht9tNu91Om83GF/YH+OKRI/R4qgmAE/HvOTd3g1VVVeZlypKhzWZjLPYN79zest1CuRc/vcj1lTXeuXGTy8urPPrGUYYaQrx79z7Pnv1gOxa2d0Kfz8erV3/kvXtpnjvXbd4KAAOBAB8+/IMTEz+ws+s0u7s/ZDgcIQCOjHzN69d/YU1NTd5+RQN4vKi6uppffTli/ox6enoIgJOTkyTJ2traf9U2NDTw1sJt9vV9XD6AfxY2vtbI0dFRBoNBer1eXvv5Gvt6+0yb1jSN6pELCiF4/vxH/PyzL+h2uwsqqaSBBEDe4KGUMgeU7YYSKSWy2Wz5E9HjhwJANps1RzEhRMHNiwFWMoCdsXwHwP8OwF+YEt9u8kCOVwAAAABJRU5ErkJggg==">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<style>
+:root{--bg:#0f1720;--panel:#151f2b;--card:#1b2836;--line:#26364a;--ink:#e6edf5;--mut:#8ea3ba;--acc:#37b6a4;--loc:#2fa876;--vaz:#c8912f;--ind:#7a8697;--done:#1e3a2c;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;font-size:14px}
+header{position:sticky;top:0;z-index:5;background:#0f1720;border-bottom:1px solid var(--line);padding:12px 18px}
+.htop{display:flex;align-items:center;gap:14px;flex-wrap:wrap}h1{font-size:16px;margin:0;font-weight:650}h1 span{color:var(--acc)}
+.tabs{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.tab{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--mut);cursor:pointer;font-size:13px;font-weight:600}
+.tab.on{background:var(--acc);border-color:var(--acc);color:#04231f}
+.bar{margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search{flex:1;min-width:200px;max-width:440px;padding:9px 13px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:14px}
+.search:focus{outline:none;border-color:var(--acc)}
+.btn{padding:9px 14px;border-radius:9px;border:1px solid var(--acc);background:transparent;color:var(--acc);font-weight:650;cursor:pointer}
+.btn:hover{background:var(--acc);color:#04231f}.btn.solid{background:var(--acc);color:#04231f}.btn.ghost{border-color:var(--line);color:var(--mut)}
+main{padding:14px 18px 80px;max-width:1180px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:9px}
+.row{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:11px 13px;cursor:pointer;transition:.12s;display:flex;flex-direction:column;gap:5px;position:relative}
+.row:hover{border-color:var(--acc);transform:translateY(-1px)}.row.sel{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.row .nm{font-weight:600;line-height:1.25;padding-right:22px}.row .sub{font-size:12px;color:var(--mut);display:flex;gap:9px;flex-wrap:wrap}
+.chk{position:absolute;top:10px;right:10px;width:16px;height:16px;border:1px solid var(--mut);border-radius:4px;display:none}
+.selmode .chk{display:block}.row.sel .chk{background:var(--acc);border-color:var(--acc)}
+.pill{font-size:11px;padding:2px 8px;border-radius:20px;background:#22303f;color:var(--mut)}
+.pill.grp{background:#1e3a34;color:var(--acc)}.pill.st-Locado{background:#173d2c;color:#5fd6a0}
+.state{font-size:13px;color:var(--mut);text-align:center;padding:36px}
+.ov{position:fixed;inset:0;background:#0009;backdrop-filter:blur(2px);display:none;align-items:flex-start;justify-content:center;padding:34px 16px;z-index:20;overflow:auto}
+.ov.on{display:flex}.modal{background:var(--panel);border:1px solid var(--line);border-radius:16px;width:100%;max-width:640px;box-shadow:0 20px 60px #000a}
+.mhead{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.mhead h2{margin:0;font-size:17px}.mhead .cpf{font-size:12px;color:var(--mut);margin-top:3px}
+.x{margin-left:auto;background:none;border:none;color:var(--mut);font-size:24px;cursor:pointer;line-height:1}
+.mbody{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+label{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--acc);display:block;margin-bottom:4px;font-weight:600}
+input,textarea,select{width:100%;background:var(--card);border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:8px 11px;font-family:inherit;font-size:13px}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--acc)}textarea{min-height:64px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stbtns{display:flex;gap:6px}
+.stbtns button{flex:1;padding:7px;font-size:12px;border-radius:7px;cursor:pointer;border:1px solid var(--line);background:#1a2532;color:var(--mut);font-weight:600}
+.stbtns button.on-Locado{background:var(--loc);border-color:var(--loc);color:#fff}
+.stbtns button.on-Vazio{background:var(--vaz);border-color:var(--vaz);color:#fff}
+.stbtns button.on-Indisponível{background:var(--ind);border-color:var(--ind);color:#fff}
+.mfoot{padding:14px 20px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.save{padding:9px 18px;border-radius:9px;border:none;background:var(--acc);color:#04231f;font-weight:700;cursor:pointer}.save:disabled{opacity:.6}
+.msg{font-size:12px;color:var(--mut)}
+.selbar{position:fixed;bottom:0;left:0;right:0;background:#151f2bf5;border-top:1px solid var(--line);padding:10px 18px;display:none;gap:10px;align-items:center;flex-wrap:wrap;z-index:15}
+.selbar.on{display:flex}
+.card2{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.contaline{display:grid;grid-template-columns:1fr .8fr 1.2fr auto;gap:8px;align-items:end;margin-bottom:8px}
+.imv{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:var(--card)}
+.imv.copiado{background:var(--done);border-color:#2f6b4c}.imv.naocobrar{opacity:.6}
+.imv .top{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.imv .id{font-weight:700;color:var(--acc)}.imv .end{font-size:12.5px;color:var(--mut)}
+.fields{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.f{background:#131c27;border:1px solid var(--line);border-radius:8px;padding:6px 8px;cursor:pointer;position:relative}.f:hover{border-color:var(--acc)}
+.f .k{font-size:9.5px;text-transform:uppercase;color:var(--mut)}.f .v{font-size:13px;font-variant-numeric:tabular-nums;margin-top:2px;word-break:break-word}
+.f .cp{position:absolute;top:5px;right:6px;font-size:10px;color:var(--acc);opacity:0}.f:hover .cp{opacity:1}
+@media(max-width:640px){.fields{grid-template-columns:1fr 1fr}.contaline{grid-template-columns:1fr 1fr}}
+
+.combo{position:relative}
+.combo input{width:100%}
+.combo .list{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--line);border-radius:10px;max-height:220px;overflow:auto;z-index:40;box-shadow:0 12px 30px #0008;display:none}
+.combo.open .list{display:block}
+.combo .opt{padding:9px 12px;cursor:pointer;font-size:13px}
+.combo .opt:hover,.combo .opt.hl{background:#22303f}
+.combo .opt.new{color:var(--acc);border-top:1px solid var(--line);font-weight:600}
+.ro{background:#131c27;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--mut)}
+.ro b{color:var(--ink);font-weight:600}
+.dupwrap{display:flex;flex-direction:column;gap:14px}
+.dupgrp{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card)}
+.dupgrp .h{font-size:12px;color:var(--warn);margin-bottom:6px;font-weight:600}
+.dupitem{font-size:12.5px;color:var(--mut);padding:2px 0}
+
+.linkitem{display:flex;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--card);cursor:pointer;margin-bottom:6px;font-size:13px}
+.linkitem:hover{border-color:var(--acc)}
+.linkitem .g{margin-left:auto;color:var(--acc);font-size:12px}
+.repasse{display:flex;gap:8px;align-items:center;background:#131c27;border:1px solid var(--line);border-radius:9px;padding:8px 11px}
+.repasse .v{font-weight:600;flex:1}
+.danger{border-color:#7a2f2f !important;color:#e08a8a !important}
+.danger:hover{background:#7a2f2f !important;color:#fff !important}
+
+.ckwrap{max-width:820px;margin:0 auto}
+.ckbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.cktask{display:grid;grid-template-columns:26px 1fr;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:8px}
+.cktask.done{background:var(--done);border-color:#2f6b4c}
+.ckbox{width:22px;height:22px;border:2px solid var(--mut);border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent}
+.cktask.done .ckbox{background:var(--loc);border-color:var(--loc);color:#fff}
+.ckmain{display:flex;flex-direction:column;gap:6px}
+.cktop{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cktitle{font-weight:600;font-size:14px;flex:1;min-width:160px}
+.cktask.done .cktitle{text-decoration:line-through;opacity:.75}
+.ckmeta{font-size:12px;color:var(--mut);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ckdate{background:#22303f;padding:2px 8px;border-radius:20px}
+.ckrev{cursor:pointer;padding:2px 8px;border-radius:20px;border:1px solid var(--line)}
+.ckrev.sim{background:#173d2c;color:#5fd6a0;border-color:#2f6b4c}
+.cknote{width:100%;background:#131c27;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:7px 10px;font-family:inherit;font-size:13px;min-height:34px;resize:vertical}
+.ckdel{background:none;border:none;color:var(--mut);cursor:pointer;font-size:16px}
+.ckdel:hover{color:#e08a8a}
+@media print{body *{visibility:hidden}#printArea,#printArea *{visibility:visible}#printArea{position:absolute;left:0;top:0;width:100%;padding:20px;color:#000}}
+#printArea{display:none}
+
+.calwrap{max-width:900px;margin:0 auto}
+.calbar{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.caldow{text-align:center;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;padding:4px 0}
+.calday{min-height:74px;border:1px solid var(--line);border-radius:9px;background:var(--card);padding:5px 6px;cursor:pointer;display:flex;flex-direction:column;gap:3px}
+.calday:hover{border-color:var(--acc)}
+.calday.empty{background:transparent;border:none;cursor:default}
+.calday.wknd{opacity:.55}
+.calday .d{font-size:12px;color:var(--mut);font-weight:600}
+.calday.hoje .d{color:var(--acc)}
+.chip{font-size:10.5px;background:#1e3a34;color:#5fd6a0;border-radius:6px;padding:1px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip.ant{background:#3a2f14;color:var(--warn)}
+.replist{margin-top:16px}
+.repitem{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 12px;margin-bottom:6px}
+.repitem .dia{background:#22303f;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:600}
+.repitem .nm{flex:1}
+.repitem .rm{background:none;border:none;color:var(--mut);cursor:pointer;font-size:15px}
+.repitem .rm:hover{color:#e08a8a}
+
+/* checklist moderno */
+.ckhead{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.ckprog{flex:1;min-width:180px;height:8px;background:#22303f;border-radius:20px;overflow:hidden}
+.ckprog i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--loc));transition:width .3s}
+.ckstat{font-size:12px;color:var(--mut);white-space:nowrap}
+.cktask{position:relative;display:grid;grid-template-columns:26px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:9px;transition:.15s}
+.cktask:hover{border-color:#33465e}
+.cktask.done{background:var(--done);border-color:#2f6b4c}
+.cktask.late{border-left:3px solid #c8912f}
+.cktask.late.done{border-left-color:#2f6b4c}
+.ckacts{display:flex;gap:2px;margin-left:auto}
+.ckicon{background:none;border:none;color:var(--mut);cursor:pointer;font-size:14px;padding:3px 6px;border-radius:6px}
+.ckicon:hover{background:#22303f;color:var(--ink)}
+.ckicon.del:hover{color:#e08a8a}
+.cknote{width:100%;background:#131c27;border:1px solid var(--line);border-radius:9px;color:var(--ink);padding:10px 12px;font-family:inherit;font-size:12.5px;line-height:1.6;min-height:38px;resize:vertical;white-space:pre-wrap;overflow:hidden}
+.cknote:focus{border-color:var(--acc);background:#16202c}
+.cktask.done .cknote{opacity:.7}
+.ckchip{font-size:11px;padding:2px 9px;border-radius:20px;background:#22303f;color:var(--mut);white-space:nowrap}
+.ckchip.d{background:#3a2f14;color:var(--warn)}
+/* copiar campos do proprietário */
+.fieldcopy{position:relative}
+.fieldcopy .cpbtn{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:#22303f;border:1px solid var(--line);color:var(--mut);border-radius:6px;font-size:10px;padding:3px 7px;cursor:pointer}
+.fieldcopy .cpbtn:hover{background:var(--acc);color:#04231f;border-color:var(--acc)}
+.fieldcopy input{padding-right:64px}
+
+/* ---- Hoje ---- */
+.hojewrap{max-width:900px;margin:0 auto}
+.hojehead{margin-bottom:16px}
+.hojehead h2{margin:0 0 4px;font-size:22px;font-weight:650}
+.hojehead .sub{color:var(--mut);font-size:13px}
+.hcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px}
+.hcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:.15s}
+.hcard:hover{border-color:var(--acc);transform:translateY(-1px)}
+.hcard .n{font-size:26px;font-weight:700;line-height:1}
+.hcard .l{font-size:11.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-top:5px}
+.hcard.atr .n{color:#e08a8a}.hcard.hoje .n{color:var(--warn)}.hcard.ok .n{color:var(--loc)}
+.hsec{margin-bottom:18px}
+.hsec h3{font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--acc);margin:0 0 8px;font-weight:600}
+.htask{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-bottom:6px;cursor:pointer}
+.htask:hover{border-color:var(--acc)}
+.htask.atr{border-left:3px solid #c8912f}
+.htask .tt{flex:1;font-size:13.5px}
+.htask .dd{font-size:11px;color:var(--mut);background:#22303f;padding:2px 9px;border-radius:20px;white-space:nowrap}
+.htask .dd.a{background:#3a2f14;color:var(--warn)}
+.hbox{width:20px;height:20px;border:2px solid var(--mut);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;flex-shrink:0}
+.htask.done .hbox{background:var(--loc);border-color:var(--loc);color:#fff}
+.htask.done .tt{text-decoration:line-through;opacity:.6}
+.hempty{color:var(--mut);font-size:13px;padding:8px 0}
+.hrep{font-size:12.5px;color:var(--mut)}
+/* ---- instruções colapsadas ---- */
+.ckexp{background:none;border:none;color:var(--acc);font-size:11px;cursor:pointer;padding:3px 0;font-weight:600}
+.cknote.collapsed{max-height:42px;overflow:hidden}
+/* ---- toast / undo ---- */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 16px;display:flex;gap:14px;align-items:center;z-index:60;box-shadow:0 12px 40px #0009;transition:transform .25s;font-size:13px}
+.toast.on{transform:translateX(-50%) translateY(0)}
+.toast button{background:none;border:none;color:var(--acc);font-weight:700;cursor:pointer;font-size:13px}
+/* ---- sync indicator ---- */
+.sync{font-size:11.5px;color:var(--mut);display:flex;align-items:center;gap:5px;margin-left:12px}
+.sync .dot{width:7px;height:7px;border-radius:50%;background:var(--loc)}
+.sync.saving .dot{background:var(--warn)}
+.sync.err .dot{background:#e08a8a}
+/* ---- busca global ---- */
+.gsearch{position:fixed;inset:0;background:#000a;backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;padding-top:12vh;z-index:70}
+.gsearch.on{display:flex}
+.gbox{width:100%;max-width:600px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px #000b}
+.gbox input{border:none;border-radius:0;border-bottom:1px solid var(--line);padding:15px 18px;font-size:15px;background:transparent}
+.gres{max-height:50vh;overflow:auto}
+.gitem{padding:11px 18px;cursor:pointer;display:flex;gap:10px;align-items:center;font-size:13px;border-bottom:1px solid #1c2734}
+.gitem:hover,.gitem.hl{background:#22303f}
+.gitem .tag{font-size:10px;background:#22303f;color:var(--mut);padding:2px 7px;border-radius:20px}
+/* ---- copiar linha do rateio ---- */
+.copyrow{margin-left:auto;display:flex;gap:6px;align-items:center}
+.cnt{font-size:11.5px;color:var(--mut)}
+</style></head><body>
+<header><div class="htop"><h1>Painel Financeiro <span>· Valoriza</span></h1><div class="sync" id="sync"><span class="dot"></span><span id="syncTxt">sincronizado</span></div><div class="tabs" id="tabs"></div></div>
+<div class="bar"><input class="search" id="q" placeholder="Buscar..."><button class="btn" id="add" style="display:none">+ Adicionar</button><button class="btn" id="selbtn" style="display:none">Selecionar p/ grupo</button><button class="btn ghost" id="dupbtn">Duplicados</button><span id="euBadge" class="msg" style="align-self:center;margin-right:4px"></span><button class="btn ghost" id="advBtn" onclick="advToggle()" title="libera ações destrutivas por 5 min" style="display:none">🔒 avançado</button><button class="btn ghost" onclick="trocarSenha()" title="alterar a senha do painel">🔑 senha</button><button class="btn ghost" onclick="sair()" title="encerrar sessão">sair</button></div></header>
+<main><div id="rateioView" style="display:none"></div><div class="grid" id="list"></div><div class="state" id="state"></div></main>
+<div class="selbar" id="selbar"><span id="selcount" class="msg">0 selecionados</span>
+ <select id="grpsel" style="max-width:220px"></select><input id="grpnew" placeholder="ou novo grupo" style="max-width:200px">
+ <button class="btn solid" id="applygrp">Atribuir</button><button class="btn ghost" id="cancelsel">Cancelar</button><span class="msg" id="selmsg"></span></div>
+<div class="gsearch" id="gs"><div class="gbox">
+  <input id="gq" placeholder="Buscar proprietário, imóvel ou tarefa...   (Esc para fechar)" autocomplete="off">
+  <div class="gres" id="gres"></div></div></div>
+<div class="ov" id="ov"><div class="modal" id="modal"></div></div>
+<script>
+const API="https://script.google.com/macros/s/AKfycby_dLd1oWs1lngRWRt7nxCgPy2iQF6ikrkP-PGBTF5BNjTtTqO_lgOgoL0ABiQ1Io52/exec";
+let TOKEN=localStorage.getItem('vlz_token')||'';
+let ADV=false,ADV_TS=0;
+function advOn(){return ADV&&(Date.now()-ADV_TS<5*60*1000);}
+function advToggle(){
+  if(advOn()){ADV=false;ADV_TS=0;}
+  else{if(!confirm('Ativar MODO AVANÇADO?\n\nLibera ações destrutivas (excluir pagos, editar meses fechados, apagar histórico) por 5 minutos.'))return;ADV=true;ADV_TS=Date.now();
+    clearTimeout(window._advT);window._advT=setTimeout(function(){ADV=false;ADV_TS=0;const b=document.getElementById('advBtn');if(b){b.textContent='🔒 avançado';b.style.color='';}},5*60*1000);}
+  const b=document.getElementById('advBtn');if(b){b.textContent=advOn()?'🔓 avançado ON':'🔒 avançado';b.style.color=advOn()?'#ff8a8a':'';}
+  if(typeof atual!=='undefined')carregar();
+}
+/* injeta o token de sessão em TODA chamada à API, sem precisar editar cada fetch */
+(function(){
+  const _fetch=window.fetch.bind(window);
+  const PUB=/action=(ping|login|trocaSenha)/;
+  window.fetch=function(url,opt){
+    try{
+      if(typeof url==='string'&&url.indexOf(API)===0&&!PUB.test(url)){
+        // GET: garante &token= na query
+        if(!opt||(opt.method||'GET').toUpperCase()==='GET'){
+          if(url.indexOf('token=')<0)url+=(url.indexOf('?')<0?'?':'&')+'token='+encodeURIComponent(TOKEN);
+        }else if(opt&&opt.body&&typeof opt.body==='string'){
+          // POST: injeta token no corpo JSON se ainda não houver
+          try{const b=JSON.parse(opt.body);if(b&&!b.token&&!PUB.test('action='+(b.action||''))){b.token=TOKEN;opt=Object.assign({},opt,{body:JSON.stringify(b)});}}catch(e){}
+        }
+      }
+    }catch(e){}
+    return _fetch(url,opt);
+  };
+})();
+const ABAS={
+ 'Hoje':{especial:true},
+ 'Proprietários':{chave:'CPF',titulo:'Proprietário',edit:['Forma Pagto','Banco','Agência','Conta','Nominal','Chave Pix','E-mail','Telefone','Observações'],
+   novo:['Proprietário','CPF','Forma Pagto','Banco','Agência','Conta','Nominal','Chave Pix','E-mail','Telefone','Observações'],
+   sub:i=>[i['Qtd Imóveis']+' imóvel(is)',i['Forma Pagto']||'sem forma'],add:true},
+ 'Imóveis':{chave:'Cód Imóvel',titulo:'Endereço',nome:i=>i['Endereço'],
+   edit:['Contrato (locatário)','Status','Grupo','Não cobrar'],
+   novo:['Cód Imóvel','Endereço','Proprietário','CPF Prop.','Forma Pagto','Contrato (locatário)','Status','Grupo'],
+   status:'Status',grupo:i=>i['Grupo'],sub:i=>['#'+i['Cód Imóvel'],i['Proprietário']],add:true,select:true},
+ 'Fornecedores':{chave:'CPF/CNPJ',titulo:'Fornecedor',edit:['Fornecedor','Tipo','CPF/CNPJ','Categoria','Contato','E-mail','Telefone','Chave Pix / Banco','Observações'],
+   novo:['Fornecedor','Tipo','CPF/CNPJ','Categoria','Contato','E-mail','Telefone','Chave Pix / Banco','Observações'],sub:i=>[i['Categoria']||'sem categoria'],add:true},
+ 'Rateio':{especial:true},
+ 'Repasses':{especial:true},
+ 'Guias':{especial:true},
+ 'Usuários':{especial:true,soAdmin:true},
+};
+const STATUS=['Locado','Vazio','Indisponível'];
+let atual='Hoje',cache={},editando=null,selMode=false,sel={};
+const $=s=>document.querySelector(s);
+const money=n=>(Number(n)||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const deacc=x=>String(x==null?'':x).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+function ehCompetencia(x){return /^\d{1,2}\s*[\/\-]\s*\d{4,5}$/.test(String(x).trim());}
+function grupos(){
+  const cat=(cache['Grupos']||[]).map(g=>String(g['Grupo']||'').trim());
+  const usados=(cache['Imóveis']||[]).map(i=>String(i['Grupo']||'').trim());
+  return [...new Set([...cat,...usados])].filter(x=>x&&!ehCompetencia(x)).sort((a,b)=>a.localeCompare(b,'pt-BR'));
+}
+function tabs(){$('#tabs').innerHTML='';Object.keys(ABAS).forEach(a=>{if(ABAS[a].soAdmin&&EU.cargo!=='admin')return;const b=document.createElement('button');b.className='tab'+(a===atual?' on':'');b.textContent=a;b.onclick=()=>{atual=a;$('#q').value='';sairSel();carregar();};$('#tabs').appendChild(b);});
+ const c=ABAS[atual], esp=!!c.especial;
+ $('#add').style.display=c.add?'block':'none';
+ $('#selbtn').style.display=c.select?'block':'none';
+ $('#dupbtn').style.display=esp?'none':'block';           // Duplicados só nas listas
+ $('#q').style.display=esp?'none':'block';                 // busca da lista só nas listas
+ $('#q').placeholder='Buscar em '+atual+'...   (ou tecla / para busca global)';}
+async function fetchAba(aba,f){if(cache[aba]&&cache[aba].length&&!f)return cache[aba];const r=await fetch(API+'?action=listar&aba='+encodeURIComponent(aba));const d=await r.json();if(d.precisaLogin){telaLogin();throw new Error('login');}cache[aba]=d.itens||[];return cache[aba];}
+async function carregar(){tabs();$('#list').innerHTML='';$('#rateioView').style.display='none';$('#state').textContent='Carregando...';if(atual==='Rateio')return telaRateio();if(atual==='Imóveis')fetchAba('Grupos');
+ if(atual==='Hoje')return telaHoje();if(atual==='Repasses')return telaRepasses();if(atual==='Guias')return telaGuias();if(atual==='Usuários')return telaUsuarios();$('#list').style.display='';try{await fetchAba(atual);render();}catch(e){$('#state').textContent='Erro ao carregar.';}}
+function nomeDe(i){const c=ABAS[atual];return c.nome?c.nome(i):i[c.titulo]||'—';}
+function render(){const f=deacc(($('#q').value||'').trim()),c=ABAS[atual],list=$('#list');list.className='grid'+(selMode?' selmode':'');list.innerHTML='';let n=0;
+ cache[atual].forEach(i=>{if(f&&!deacc(JSON.stringify(i)).includes(f))return;n++;const grp=c.grupo&&c.grupo(i),key=i[c.chave],st=i['Status'];
+  const div=document.createElement('div');div.className='row'+(sel[key]?' sel':'');
+  div.innerHTML=`<div class="chk"></div><div class="nm">${nomeDe(i)}</div><div class="sub"><span class="pill">nº ${n}</span>${(c.sub(i)||[]).map(s=>`<span class="pill">${s}</span>`).join('')}${st==='Locado'?'<span class="pill st-Locado">Locado</span>':''}${grp?`<span class="pill grp">${grp}</span>`:''}</div>`;
+  div.onclick=()=>selMode?toggleSel(key,div):(atual==='Proprietários'?abrirProp(i):abrir(i));list.appendChild(div);});
+ $('#state').textContent=n?'':'Nada encontrado.';}
+async function entrarSel(){await fetchAba('Grupos');selMode=true;sel={};$('#selbar').classList.add('on');const g=grupos();$('#grpsel').innerHTML='<option value="">— grupo existente —</option>'+g.map(x=>`<option>${x}</option>`).join('');render();sc();}
+function sairSel(){selMode=false;sel={};$('#selbar').classList.remove('on');}
+function toggleSel(k,div){if(sel[k])delete sel[k];else sel[k]=true;div.classList.toggle('sel');sc();}
+function sc(){$('#selcount').textContent=Object.keys(sel).length+' selecionados';}
+async function aplicarGrupo(){const grupo=($('#grpnew').value.trim()||$('#grpsel').value),cods=Object.keys(sel);
+ if(!grupo||!cods.length){$('#selmsg').textContent='Escolha o grupo e selecione imóveis.';return;}$('#selmsg').textContent='Salvando...';
+ try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'setGrupo',codigos:cods,grupo})});
+  const d=await r.json();if(d.ok){cache['Imóveis'].forEach(i=>{if(sel[i['Cód Imóvel']])i['Grupo']=grupo;});delete cache['Grupos'];fetchAba('Grupos');$('#selmsg').textContent=d.atualizados+' → '+grupo;sairSel();render();}else $('#selmsg').textContent='Erro: '+(d.erro||'?');}
+ catch(e){$('#selmsg').textContent='Falha.';}}
+
+
+
+
+
+/* ================= BUSCA GLOBAL (tecla /) ================= */
+async function abrirBusca(){
+  $('#gs').classList.add('on');const q=$('#gq');q.value='';$('#gres').innerHTML='';q.focus();
+  if(!cache['Proprietários'])await fetchAba('Proprietários');
+  if(!cache['Imóveis'])await fetchAba('Imóveis');
+}
+function fecharBusca(){$('#gs').classList.remove('on');}
+function buscaGlobal(termo){
+  const f=deacc(termo.trim());if(!f){$('#gres').innerHTML='';return;}
+  const res=[];
+  (cache['Proprietários']||[]).forEach(p=>{if(deacc(p['Proprietário']+' '+p['CPF']).includes(f))res.push({tag:'Proprietário',txt:p['Proprietário'],go:()=>{fecharBusca();atual='Proprietários';carregar().then(()=>abrirProp(p));}});});
+  (cache['Imóveis']||[]).forEach(i=>{if(deacc(i['Endereço']+' '+i['Cód Imóvel']+' '+i['Proprietário']).includes(f))res.push({tag:'Imóvel',txt:'#'+i['Cód Imóvel']+' · '+i['Endereço'],go:()=>{fecharBusca();atual='Imóveis';carregar().then(()=>abrir(i));}});});
+  const lim=res.slice(0,12);
+  window._gres=lim;
+  $('#gres').innerHTML=lim.length?lim.map((r,i)=>`<div class="gitem${i===0?' hl':''}" data-i="${i}"><span class="tag">${r.tag}</span><span>${r.txt}</span></div>`).join(''):'<div class="gitem">Nada encontrado</div>';
+  $('#gres').querySelectorAll('.gitem[data-i]').forEach(el=>el.onclick=()=>window._gres[el.dataset.i].go());
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='/'&&!/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){e.preventDefault();abrirBusca();}
+  if(e.key==='Escape'&&$('#gs').classList.contains('on'))fecharBusca();
+  if($('#gs').classList.contains('on')&&e.key==='Enter'){const hl=$('#gres .gitem.hl');if(hl&&window._gres)window._gres[hl.dataset.i].go();}
+});
+
+/* ================= TELA HOJE ================= */
+async function telaHoje(){
+  $('#list').style.display='none';$('#rateioView').style.display='';$('#state').textContent='';
+  const v=$('#rateioView');
+  v.innerHTML='<div class="hojewrap"><div class="msg">Carregando...</div></div>';
+  const hoje=new Date(), dia=hoje.getDate();
+  const dtxt=hoje.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
+  let repHoje=[], rotina=[];
+  const [rRep,rRot]=await Promise.all([
+    fetch(API+'?action=listarRepasses').then(r=>r.json()).catch(()=>({itens:[]})),
+    aiPost({action:'rotinaDia'}).catch(()=>({itens:[]}))
+  ]);
+  (rRep.itens||[]).forEach(it=>{const ef=diaEfetivo(Number(it['Dia']),hoje.getMonth(),hoje.getFullYear());
+    if(ef&&ef.dia===dia&&ef.mesReal===hoje.getMonth())repHoje.push({nome:it['Proprietário'],ant:ef.antecipado,orig:it['Dia']});});
+  rotina=rRot.itens||[];rotFeitos=rRot.feitos||0;rotTotal=rRot.total||0;
+  v.innerHTML=`<div class="hojewrap">
+    <div class="hojehead"><h2>${dtxt.charAt(0).toUpperCase()+dtxt.slice(1)}</h2></div>
+    <div class="hsec" style="margin-bottom:14px"><h3 style="display:flex;align-items:center;gap:8px">Rotina do dia <span class="msg" id="rotCont" style="font-weight:normal">${rotFeitos}/${rotTotal}</span> <button class="btn ghost" style="padding:1px 7px;margin-left:auto;font-size:12px" onclick="rotinaEditar()">editar</button></h3>
+      <div id="rotWrap">${rotina.length?rotina.map(rotBloco).join(''):'<div class="hempty">Sem itens. Clique em editar para adicionar.</div>'}</div>
+    </div>
+    <div class="hcards">
+      <div class="hcard" onclick="atual='Repasses';carregar()"><div class="n">${repHoje.length}</div><div class="l">Repasses hoje</div></div>
+    </div>
+    ${repHoje.length?`<div class="hsec"><h3>Repasses fixos de hoje</h3>${repHoje.map(r=>`<div class="htask"><div class="tt">${r.nome}</div><span class="dd${r.ant?' a':''}">${r.ant?'antecipado do dia '+r.orig:'dia '+r.orig}</span></div>`).join('')}</div>`:''}
+  </div>`;
+}
+function rotBloco(x){
+  if(x.tipo==='sn'){
+    const aberto=x.resposta==='Sim';
+    const filhos=x.filhos||[];
+    const linhaFilho=f=>`<div class="htask" style="cursor:pointer;padding-left:26px" onclick="rotToggle('${eH(f.id)}',${f.feito?0:1})">
+      <div class="hbox ${f.feito?'done':''}" style="${f.feito?'background:#5fd6a0;border-color:#5fd6a0':''}">${f.feito?'✓':''}</div>
+      <div class="tt" style="${f.feito?'opacity:.5;text-decoration:line-through':''}">${eH(f.texto)}</div></div>`;
+    return `<div class="rotBlocoSN" data-id="${eH(x.id)}" style="border-left:2px solid ${x.concluido?'#5fd6a0':(x.resposta?'#e9c15f':'rgba(255,255,255,.08)')};padding-left:8px;margin:4px 0">
+      <div class="htask" style="flex-wrap:wrap">
+        <div class="tt" style="flex:1;min-width:180px">${eH(x.texto)}</div>
+        <button class="btn ${x.resposta==='Sim'?'solid':'ghost'}" style="padding:2px 10px" onclick="rotResponder('${eH(x.id)}','Sim')">Sim</button>
+        <button class="btn ${x.resposta==='Não'?'solid':'ghost'}" style="padding:2px 10px" onclick="rotResponder('${eH(x.id)}','Não')">Não</button>
+      </div>
+      ${aberto?filhos.map(linhaFilho).join(''):''}
+    </div>`;
+  }
+  return `<div class="htask" style="cursor:pointer" onclick="rotToggle('${eH(x.id)}',${x.feito?0:1})">
+    <div class="hbox ${x.feito?'done':''}" style="${x.feito?'background:#5fd6a0;border-color:#5fd6a0':''}">${x.feito?'✓':''}</div>
+    <div class="tt" style="${x.feito?'opacity:.5;text-decoration:line-through':''}">${eH(x.texto)}</div></div>`;
+}
+async function rotToggle(id,feito){
+  const el=event&&event.currentTarget;      // captura AGORA (some após o await)
+  if(el){                                     // optimistic: muda o visual na hora
+    const box=el.querySelector('.hbox'),tt=el.querySelector('.tt');
+    if(feito){if(box){box.style.background='#5fd6a0';box.style.borderColor='#5fd6a0';box.textContent='✓';box.classList.add('done');}if(tt){tt.style.opacity='.5';tt.style.textDecoration='line-through';}}
+    else{if(box){box.style.background='';box.style.borderColor='';box.textContent='';box.classList.remove('done');}if(tt){tt.style.opacity='';tt.style.textDecoration='';}}
+    el.setAttribute('onclick',"rotToggle('"+id+"',"+(feito?0:1)+")"); // inverte para o próximo clique
+  }
+  rotAtualizarContador(feito?1:-1);
+  try{await aiPost({action:'rotinaMarcar',id,feito:!!feito});}   // grava em segundo plano
+  catch(e){if(el){el.style.outline='2px solid #ff8a8a';setTimeout(()=>{el.style.outline='';},1500);}} // falhou: sinaliza
+}
+/* Responder Sim/Não recalcula quantos passos existem hoje (Sim revela sub-passos, Não não),
+   então é mais simples buscar o estado atualizado do servidor e redesenhar só a rotina. */
+async function rotResponder(id,resposta){
+  try{await aiPost({action:'rotinaResponder',id,resposta});}
+  catch(e){toast('Falha ao responder. Tente de novo.');return;}
+  const r=await aiPost({action:'rotinaDia'});
+  rotina=r.itens||[];rotFeitos=r.feitos||0;rotTotal=r.total||0;
+  $('#rotWrap').innerHTML=rotina.map(rotBloco).join('');
+  const c=$('#rotCont');if(c)c.textContent=rotFeitos+'/'+rotTotal;
+}
+function rotAtualizarContador(delta){
+  rotFeitos=Math.max(0,rotFeitos+delta);
+  const c=$('#rotCont');if(c)c.textContent=rotFeitos+'/'+rotTotal;
+}
+async function rotinaEditar(){
+  const r=await aiPost({action:'rotinaDia'});const its=r.itens||[];
+  const box=$('#rotWrap');
+  const linha=(x,i,lista)=>`<div class="htask" style="gap:6px">
+    <div class="tt">${eH(x.texto)}${x.tipo==='sn'?' <span class="msg">(pergunta sim/não)</span>':''}</div>
+    <button class="btn ghost" style="padding:1px 6px" onclick="rotMover('${eH(x.id)}',-1)" ${i===0?'disabled':''}>↑</button>
+    <button class="btn ghost" style="padding:1px 6px" onclick="rotMover('${eH(x.id)}',1)" ${i===lista.length-1?'disabled':''}>↓</button>
+    <button class="btn ghost" style="padding:1px 6px;color:#ff8a8a" onclick="rotDel('${eH(x.id)}','${eH(x.texto)}')">×</button></div>`;
+  box.innerHTML=its.map((x,i)=>linha(x,i,its)).join('')+
+    `<div class="htask" style="gap:6px"><input id="rotNovo" placeholder="novo item da rotina..." style="flex:1" onkeydown="if(event.key==='Enter')rotAdd()"><button class="btn solid" style="padding:2px 10px" onclick="rotAdd()">+ add</button></div>
+     <div class="msg" style="margin-top:4px">Perguntas sim/não e seus sub-passos condicionais são criados junto no modelo padrão; aqui você adiciona itens simples de checkbox.</div>
+     <div style="margin-top:6px"><button class="btn ghost" onclick="telaHoje()">✓ concluir edição</button></div>`;
+}
+async function rotAdd(){const t=$('#rotNovo').value.trim();if(!t)return;await aiPost({action:'rotinaAdd',texto:t});rotinaEditar();}
+async function rotDel(id,texto){if(!confirm('Remover "'+texto+'" da rotina diária? (se for uma pergunta, os sub-passos dela também somem)'))return;await aiPost({action:'rotinaDel',id});rotinaEditar();}
+async function rotMover(id,dir){await aiPost({action:'rotinaMover',id,dir});rotinaEditar();}
+
+/* ---- Repasses: calendário ---- */
+let repMes=new Date().getMonth(), repAno=new Date().getFullYear(), repItens=[];
+const MESES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+async function telaRepasses(){
+  $('#list').style.display='none';$('#rateioView').style.display='';$('#state').textContent='';
+  await fetchAba('Proprietários');
+  try{const r=await fetch(API+'?action=listarRepasses');const d=await r.json();repItens=d.itens||[];}catch(e){repItens=[];}
+  renderRepasses();
+}
+// dia efetivo no mês (antecipa p/ sexta se cair fim de semana)
+function diaEfetivo(dia,mes,ano){
+  var d=new Date(ano,mes,dia); if(d.getMonth()!==mes)return null; // dia inexistente no mês
+  var dow=d.getDay(); var ant=false;
+  if(dow===6){d.setDate(d.getDate()-1);ant=true;}      // sábado -> sexta
+  else if(dow===0){d.setDate(d.getDate()-2);ant=true;} // domingo -> sexta
+  return {dia:d.getDate(), mesReal:d.getMonth(), antecipado:ant, original:dia};
+}
+function renderRepasses(){
+  const v=$('#rateioView');
+  const primeiro=new Date(repAno,repMes,1).getDay();
+  const nDias=new Date(repAno,repMes+1,0).getDate();
+  const hoje=new Date();
+  // mapa dia-do-mês -> [{nome, antecipado, original}]
+  const porDia={};
+  repItens.forEach(it=>{
+    const ef=diaEfetivo(Number(it['Dia']),repMes,repAno);
+    if(ef&&ef.mesReal===repMes){(porDia[ef.dia]=porDia[ef.dia]||[]).push({nome:it['Proprietário'],ant:ef.antecipado,orig:it['Dia']});}
+  });
+  const dow=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  let cal='<div class="calgrid">'+dow.map(d=>`<div class="caldow">${d}</div>`).join('');
+  for(let i=0;i<primeiro;i++)cal+='<div class="calday empty"></div>';
+  for(let d=1;d<=nDias;d++){
+    const dt=new Date(repAno,repMes,d),wknd=(dt.getDay()===0||dt.getDay()===6);
+    const isHoje=(d===hoje.getDate()&&repMes===hoje.getMonth()&&repAno===hoje.getFullYear());
+    const chips=(porDia[d]||[]).map(x=>`<div class="chip${x.ant?' ant':''}" title="${x.nome}${x.ant?' (antecipado do dia '+x.orig+')':''}">${x.nome}${x.ant?' ⚠':''}</div>`).join('');
+    cal+=`<div class="calday${wknd?' wknd':''}${isHoje?' hoje':''}" onclick="addRepasseDia(${d})"><div class="d">${d}</div>${chips}</div>`;
+  }
+  cal+='</div>';
+  // lista embaixo (ordenada por dia)
+  const ordenada=[...repItens].sort((a,b)=>Number(a['Dia'])-Number(b['Dia']));
+  const lista=ordenada.length? ordenada.map(it=>`<div class="repitem"><span class="dia">dia ${it['Dia']}</span><span class="nm">${it['Proprietário']}</span><button class="rm" onclick="removerRepasse('${it['ID']}')">🗑</button></div>`).join('') : '<div class="msg">Nenhum repasse fixo cadastrado. Clique num dia do calendário para adicionar.</div>';
+  v.innerHTML=`<div class="calwrap">
+    <div class="calbar"><button class="btn ghost" onclick="mudarMes(-1)">‹</button>
+      <b style="min-width:150px;text-align:center">${MESES[repMes]} ${repAno}</b>
+      <button class="btn ghost" onclick="mudarMes(1)">›</button>
+      <span class="msg" style="margin-left:auto">Fim de semana antecipa p/ sexta ⚠</span></div>
+    ${cal}
+    <div class="replist"><label>Repasses fixos</label>${lista}</div>
+  </div>`;
+}
+function mudarMes(d){repMes+=d;if(repMes<0){repMes=11;repAno--;}if(repMes>11){repMes=0;repAno++;}renderRepasses();}
+async function addRepasseDia(dia){
+  const nomes=(cache['Proprietários']||[]).map(p=>p['Proprietário']).filter(Boolean).sort();
+  const nome=await escolherProprietario(nomes,dia);
+  if(!nome)return;
+  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'addRepasse',dia:dia,proprietario:nome})});
+    const d=await r.json();if(d.ok){repItens.push({'ID':d.id,'Dia':dia,'Proprietário':nome});renderRepasses();}else toast('Erro: '+(d.erro||'?'));}
+  catch(e){toast('Falha de conexão.');}
+}
+function escolherProprietario(nomes,dia){
+  return new Promise(res=>{
+    let h=`<div class="mhead"><div><h2>Repasse fixo — dia ${dia}</h2></div><button class="x" onclick="fechar()">×</button></div>
+      <div class="mbody"><label>Proprietário</label>`+combo('id="repProp"',nomes,'')+`</div>
+      <div class="mfoot"><button class="save" id="repok">Adicionar</button><span class="msg" id="repmsg"></span></div>`;
+    $('#modal').innerHTML=h;wireCombos($('#modal'));$('#ov').classList.add('on');document.body.style.overflow='hidden';
+    $('#repok').onclick=()=>{const nome=$('#modal').querySelector('#repProp').value.trim();if(!nome){$('#repmsg').textContent='Escolha um proprietário.';return;}fechar();res(nome);};
+    $('#ov').addEventListener('click',function h2(e){if(e.target.id==='ov'){$('#ov').removeEventListener('click',h2);res(null);}});
+  });
+}
+async function removerRepasse(id){
+  const bk=repItens.find(x=>x['ID']===id);if(!bk)return;
+  setSync('saving');
+  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'excluirRepasse',id})});
+    const d=await r.json();
+    if(d.ok){repItens=repItens.filter(x=>x['ID']!==id);renderRepasses();setSync('');
+      toast('Repasse de '+bk['Proprietário']+' removido.',async()=>{
+        setSync('saving');
+        const rr=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'addRepasse',dia:bk['Dia'],proprietario:bk['Proprietário']})});
+        const dd=await rr.json();if(dd.ok){repItens.push({'ID':dd.id,'Dia':bk['Dia'],'Proprietário':bk['Proprietário']});renderRepasses();setSync('');toast('Restaurado.');}else setSync('err');});
+    } else {setSync('err');toast('Erro: '+(d.erro||'?'));}}
+  catch(e){setSync('err');toast('Falha de conexão.');}
+}
+
+/* ---- Bloco B: modal do proprietário (hierárquico) ---- */
+async function abrirProp(item){
+  editando={item,aba:'Proprietários'};
+  const nome=item['Proprietário']||'';
+  let h=`<div class="mhead"><div><h2>${nome}</h2><div class="cpf">${item['CPF']||''}</div></div><button class="x" onclick="fechar()">×</button></div><div class="mbody">`;
+  h+=`<div class="repasse"><div class="v" id="rep">Repasse ${nome}</div><button class="btn ghost" onclick="cpTxt('Repasse ${nome.replace(/'/g,'')}',this)">Copiar</button></div>`;
+  ['Forma Pagto','Banco','Agência','Conta','Nominal','Chave Pix','E-mail','Telefone','Observações'].forEach(campo=>{const v=item[campo]!=null?item[campo]:'';
+    if(campo==='Observações')h+=`<div><label>${campo}</label><textarea data-c="${campo}">${v}</textarea></div>`;
+    else h+=`<div><label>${campo}</label><div class="fieldcopy"><input data-c="${campo}" value="${String(v).replace(/"/g,'&quot;')}"><button type="button" class="cpbtn" onclick="cpField(this)">copiar</button></div></div>`;});
+  h+=`<div><label>Imóveis deste proprietário</label><div id="propImv" class="msg">carregando...</div></div>`;
+  h+=`<div><label>Grupos de rateio</label><div id="propGrp" class="msg">carregando...</div></div>`;
+  h+=`</div><div class="mfoot"><button class="save" id="save">Salvar</button><button class="btn ghost" id="addImv">+ Imóvel deste dono</button><span class="msg" id="msg"></span></div>`;
+  $('#modal').innerHTML=h;$('#ov').classList.add('on');document.body.style.overflow='hidden';
+  $('#save').onclick=salvar;
+  $('#addImv').onclick=()=>novoImovelDe(item);
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'imoveisProp',cpf:item['CPF']})});
+    const d=await r.json();
+    $('#propImv').innerHTML=(d.imoveis||[]).length? d.imoveis.map(im=>`<div class="linkitem" onclick='abrirImovelPorCod(${JSON.stringify(String(im.cod))})'>#${im.cod} · ${im.endereco||''}${im.status==='Locado'?' <span class="g">Locado</span>':''}</div>`).join('') : '<span class="msg">nenhum</span>';
+    $('#propGrp').innerHTML=(d.grupos||[]).length? d.grupos.map(g=>`<div class="linkitem" onclick='irRateio(${JSON.stringify(g.grupo)})'>${g.grupo} <span class="g">${g.qtd} imóvel(is) →</span></div>`).join('') : '<span class="msg">nenhum grupo</span>';
+  }catch(e){$('#propImv').textContent='erro';}
+}
+
+function cpField(btn){
+  const inp=btn.parentElement.querySelector('input');
+  if(!inp||!inp.value.trim())return;
+  navigator.clipboard&&navigator.clipboard.writeText(inp.value.trim());
+  const o=btn.textContent;btn.textContent='✓';setTimeout(()=>btn.textContent=o,800);
+}
+
+function cpTxt(t,btn){navigator.clipboard&&navigator.clipboard.writeText(t);const o=btn.textContent;btn.textContent='Copiado ✓';setTimeout(()=>btn.textContent=o,900);}
+function abrirImovelPorCod(cod){const im=(cache['Imóveis']||[]).find(x=>String(x['Cód Imóvel'])===String(cod));if(im){const a=atual;atual='Imóveis';abrir(im);atual=a;}}
+function irRateio(grupo){fechar();atual='Rateio';pendingGrupo=grupo;carregar();}
+function novoImovelDe(prop){
+  editando={item:{},aba:'Imóveis',novo:true};
+  const campos=['Cód Imóvel','Endereço','Contrato (locatário)','Status','Grupo'];
+  let h=`<div class="mhead"><div><h2>Novo imóvel de ${prop['Proprietário']||''}</h2></div><button class="x" onclick="fechar()">×</button></div><div class="mbody">`;
+  h+=`<div class="ro">Proprietário: <b>${prop['Proprietário']||''}</b> · ${prop['CPF']||''}</div>`;
+  campos.forEach(c=>{if(c==='Grupo')h+=`<div><label>Grupo</label>`+combo('data-c="Grupo"',grupos(),'')+`</div>`;else h+=`<div><label>${c}</label><input data-c="${c}"></div>`;});
+  h+=`</div><div class="mfoot"><button class="save" id="save">Adicionar</button><span class="msg" id="msg"></span></div>`;
+  $('#modal').innerHTML=h;wireCombos($('#modal'));
+  $('#save').onclick=async()=>{const d=coletar();d['Proprietário']=prop['Proprietário'];d['CPF Prop.']=prop['CPF'];
+    $('#save').disabled=true;$('#msg').textContent='Adicionando...';
+    try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'adicionar',aba:'Imóveis',dados:d})});
+      const j=await r.json();if(j.ok){cache['Imóveis']&&cache['Imóveis'].push(Object.assign({ID:j.id},d));$('#msg').textContent='Adicionado ✓';setTimeout(fechar,600);}else $('#msg').textContent='Erro: '+(j.erro||'?');}
+    catch(e){$('#msg').textContent='Falha.';}$('#save').disabled=false;};
+}
+let pendingGrupo=null;
+
+/* conta vínculos de um registro antes de excluir (evita órfãos) */
+function vinculosDe(aba,item){
+  const ims=cache['Imóveis']||[];
+  if(aba==='Proprietários'){
+    const cpf=String(item['CPF']||'').replace(/\D/g,'');
+    const nome=deacc(String(item['Proprietário']||''));
+    const lig=ims.filter(im=>{
+      const c=String(im['CPF Prop.']||'').replace(/\D/g,'');
+      return (cpf&&c&&c===cpf)||(nome&&deacc(String(im['Proprietário']||''))===nome);
+    });
+    return {tipo:'imóvel(is)',itens:lig.map(im=>'#'+im['Cód Imóvel']+' '+(im['Endereço']||''))};
+  }
+  return {tipo:'',itens:[]};
+}
+async function excluirRegistro(aba,item){
+  const c=ABAS[aba];
+  const v=vinculosDe(aba,item);
+  if(v.itens.length){
+    if(!advOn()){
+      alert('Não dá para excluir: este '+c.titulo.toLowerCase()+' tem '+v.itens.length+' '+v.tipo+' vinculado(s):\n\n'+v.itens.slice(0,12).join('\n')+(v.itens.length>12?'\n...':'')+'\n\nTransfira ou remova os imóveis primeiro, ou ative o 🔒 modo avançado para excluir mesmo assim (os imóveis ficarão sem '+c.titulo.toLowerCase()+').');
+      return;
+    }
+    if(!confirm('ATENÇÃO: '+v.itens.length+' '+v.tipo+' ficarão SEM '+c.titulo.toLowerCase()+':\n\n'+v.itens.slice(0,12).join('\n')+(v.itens.length>12?'\n...':'')+'\n\nExcluir mesmo assim?'))return;
+  } else {
+    if(!confirm('Excluir '+c.titulo.toLowerCase()+' "'+(nomeDe(item))+'"?'))return;
+  }
+  const backup=Object.assign({},item);
+  setSync('saving');
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'excluir',aba,id:item['ID']})});
+    const d=await r.json();
+    if(d.ok){
+      cache[aba]=(cache[aba]||[]).filter(x=>x['ID']!==item['ID']);
+      fechar();render();setSync('');
+      toast(c.titulo+' removido.',async()=>{
+        setSync('saving');
+        const rr=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'adicionar',aba,dados:backup})});
+        const dd=await rr.json();if(dd.ok){cache[aba].push(backup);render();setSync('');toast('Restaurado.');}else setSync('err');
+      });
+    } else {setSync('err');toast('Erro: '+(d.erro||'?'));}
+  }catch(e){setSync('err');toast('Falha de conexão.');}
+}
+async function excluirImovel(item){
+  const backup=Object.assign({},item);
+  setSync('saving');
+  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'excluir',aba:'Imóveis',id:item['ID']})});
+    const d=await r.json();
+    if(d.ok){cache['Imóveis']=cache['Imóveis'].filter(x=>x['ID']!==item['ID']);fechar();render();setSync('');
+      toast('Imóvel #'+backup['Cód Imóvel']+' removido.',async()=>{
+        setSync('saving');
+        const rr=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'adicionar',aba:'Imóveis',dados:backup})});
+        const dd=await rr.json();if(dd.ok){cache['Imóveis'].push(backup);render();setSync('');toast('Restaurado.');}else setSync('err');});
+    } else {setSync('err');toast('Erro: '+(d.erro||'?'));}}
+  catch(e){setSync('err');toast('Falha de conexão.');}
+}
+function transferirImovel(item){
+  const props=(cache['Proprietários']||[]);
+  let h=`<div class="mhead"><div><h2>Transferir imóvel #${item['Cód Imóvel']}</h2><div class="cpf">de ${item['Proprietário']||'—'}</div></div><button class="x" onclick="fechar()">×</button></div><div class="mbody">
+    <div><label>Novo proprietário</label>`+combo('data-c="__novoProp"',props.map(p=>p['Proprietário']),'')+`</div>
+    <div class="msg">O CPF do novo dono é vinculado automaticamente.</div>
+    </div><div class="mfoot"><button class="save" id="save">Transferir</button><span class="msg" id="msg"></span></div>`;
+  $('#modal').innerHTML=h;wireCombos($('#modal'));
+  $('#save').onclick=async()=>{
+    const nome=$('#modal').querySelector('[data-c="__novoProp"]').value.trim();
+    const p=(cache['Proprietários']||[]).find(x=>x['Proprietário']===nome);
+    if(!p){$('#msg').textContent='Escolha um proprietário da lista.';return;}
+    $('#save').disabled=true;$('#msg').textContent='Transferindo...';
+    try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'transferir',id:item['ID'],proprietario:p['Proprietário'],cpf:p['CPF']})});
+      const d=await r.json();if(d.ok){item['Proprietário']=p['Proprietário'];item['CPF Prop.']=p['CPF'];$('#msg').textContent='Transferido ✓';render();setTimeout(fechar,600);}else $('#msg').textContent='Erro: '+(d.erro||'?');}
+    catch(e){$('#msg').textContent='Falha.';}$('#save').disabled=false;};
+}
+
+
+function coletar(){const d={};$('#modal').querySelectorAll('[data-c]').forEach(el=>d[el.dataset.c]=el.value);const c=ABAS[editando.aba];if(c.status){const b=$('#st .on-Locado,#st .on-Vazio,#st .on-Indisponível');d[c.status]=b?b.dataset.s:'';}return d;}
+function abrir(item){editando={item,aba:atual};const c=ABAS[atual];
+ let h=`<div class="mhead"><div><h2>${nomeDe(item)}</h2><div class="cpf">${item[c.chave]||''}</div></div><button class="x" onclick="fechar()">×</button></div><div class="mbody">`;
+ if(atual==='Imóveis'){const pg=[item['Forma Pagto'],item['Banco'],item['Agência']&&('Ag '+item['Agência']),item['Conta']&&('CC '+item['Conta'])].filter(Boolean).join(' · ');
+   h+=`<div class="ro">Pagamento do proprietário: <b>${item['Proprietário']||'—'}</b>${pg?(' — '+pg):''}${item['Nominal']?(' · nominal: '+item['Nominal']):''}</div>`;}
+ c.edit.forEach(campo=>{const v=item[campo]!=null?item[campo]:'';
+  if(campo===c.status)h+=`<div><label>${campo}</label><div class="stbtns" id="st">`+STATUS.map(s=>`<button data-s="${s}" class="${v===s?'on-'+s:''}">${s}</button>`).join('')+`</div></div>`;
+  else if(campo==='Grupo'){const g=grupos();h+=`<div><label>Grupo</label>`+combo('data-c="Grupo"',g,v)+`</div>`;}
+  else if(campo==='Observações')h+=`<div><label>${campo}</label><textarea data-c="${campo}">${v}</textarea></div>`;
+  else h+=`<div><label>${campo}</label><input data-c="${campo}" value="${String(v).replace(/"/g,'&quot;')}"></div>`;});
+ const podeExc=(atual==='Proprietários'||atual==='Fornecedores'||atual==='Imóveis');
+ h+=`</div><div class="mfoot"><button class="save" id="save">Salvar</button>`+(atual==='Imóveis'?`<button class="btn ghost" id="transf">Transferir</button>`:``)+(podeExc?`<button class="btn ghost danger" id="excl">Excluir</button>`:``)+`<span class="msg" id="msg"></span></div>`;
+ $('#modal').innerHTML=h;$('#ov').classList.add('on');document.body.style.overflow='hidden';
+ if(atual==='Imóveis'){const t=$('#transf');if(t)t.onclick=()=>transferirImovel(item);}
+ {const x=$('#excl');if(x)x.onclick=()=>{if(atual==='Imóveis')excluirImovel(item);else excluirRegistro(atual,item);};}
+ const st=$('#st');if(st)st.querySelectorAll('button').forEach(b=>b.onclick=()=>{st.querySelectorAll('button').forEach(x=>x.className='');b.className='on-'+b.dataset.s;});wireCombos($('#modal'));$('#save').onclick=salvar;}
+async function salvar(){const c=ABAS[editando.aba],dados=coletar();$('#save').disabled=true;$('#msg').textContent='Salvando...';
+ try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'salvar',aba:editando.aba,chaveCol:c.chave,chave:editando.item[c.chave],dados})});
+  const d=await r.json();if(d.ok){Object.assign(editando.item,dados);$('#msg').textContent='Salvo ✓';render();setTimeout(fechar,500);}else $('#msg').textContent='Erro: '+(d.erro||'?');}catch(e){$('#msg').textContent='Falha.';}$('#save').disabled=false;}
+function novo(){const c=ABAS[atual];editando={item:{},aba:atual,novo:true};let h=`<div class="mhead"><div><h2>Novo ${c.titulo}</h2></div><button class="x" onclick="fechar()">×</button></div><div class="mbody">`;
+ (c.novo||c.edit).forEach(campo=>{h+=`<div><label>${campo}</label><input data-c="${campo}"></div>`;});h+=`</div><div class="mfoot"><button class="save" id="save">Adicionar</button><span class="msg" id="msg"></span></div>`;
+ $('#modal').innerHTML=h;$('#ov').classList.add('on');document.body.style.overflow='hidden';$('#save').onclick=adicionar;}
+async function adicionar(){const dados=coletar();$('#save').disabled=true;$('#msg').textContent='Adicionando...';
+ try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'adicionar',aba:atual,dados})});
+  const d=await r.json();if(d.ok){cache[atual].push(Object.assign({_linha:d.linha},dados));$('#msg').textContent='Adicionado ✓';render();setTimeout(fechar,500);}else $('#msg').textContent='Erro: '+(d.erro||'?');}catch(e){$('#msg').textContent='Falha.';}$('#save').disabled=false;}
+/* RATEIO por Cód Imóvel */
+/* RATEIO por Cód Imóvel — v2: competência travada (mês/ano), painel de status por condomínio,
+   finalizar/reabrir rateio do mês, divisão sem perder centavos, marcar copiado em lote. */
+let contas=[],grpItens=[],rComp=compAtual(),rResumo={},rFinalizado=false,divMem={};
+function esq(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+async function telaRateio(){
+  $('#list').style.display='none';$('#state').textContent='';
+  await fetchAba('Imóveis');await fetchAba('Grupos');const g=grupos();
+  const v=$('#rateioView');v.style.display='';
+  const [mm,aa]=rComp.split('/');
+  let mOpts=MESES.map((n,i)=>`<option value="${('0'+(i+1)).slice(-2)}" ${('0'+(i+1)).slice(-2)===mm?'selected':''}>${n}</option>`).join('');
+  let aOpts='';for(let a=ANO_MIN;a<=ANO_MAX;a++)aOpts+=`<option ${String(a)===aa?'selected':''}>${a}</option>`;
+  v.innerHTML=`<div class="card2" style="max-width:820px;margin:0 auto">
+   <div class="two"><div><label>Condomínio</label><select id="rG"><option value="">— escolher —</option>${g.map(x=>`<option ${x===pendingGrupo?'selected':''}>${esq(x)}</option>`).join('')}</select></div>
+   <div><label>Competência</label><div style="display:flex;gap:6px"><select id="rMes" style="flex:1">${mOpts}</select><select id="rAno" style="width:92px">${aOpts}</select></div></div></div>
+   <div id="rPainel" style="margin-top:10px"></div>
+   <div id="rStatus" style="margin-top:8px"></div>
+   <div id="rInfo" class="msg" style="margin-top:8px"></div>
+   <div id="rHist" style="margin-top:8px"></div>
+   <div style="margin-top:12px"><label>Contas do mês</label><div id="rConta"></div><button class="btn ghost" id="addC">+ conta</button></div>
+   <div style="margin-top:12px"><button class="btn solid" id="rGer">Gerar por imóvel</button> <button class="btn ghost" id="rDup" title="copia as contas do mês anterior deste grupo, marcadas como cópia a revisar">⧉ duplicar mês anterior</button></div></div>
+   <div id="rOut" style="max-width:820px;margin:14px auto 0"></div>`;
+  contas=[{serv:'Água',valor:'',compl:'',divisor:''}];
+  $('#rG').onchange=carregarGrupo;
+  $('#rMes').onchange=$('#rAno').onchange=()=>{rComp=$('#rMes').value+'/'+$('#rAno').value;carregarPainel().then(()=>{renderStatusGrupo();});};
+  $('#addC').onclick=()=>{contas.push({serv:'Luz',valor:'',compl:'',divisor:''});renderC();};
+  $('#rGer').onclick=gerar;
+  $('#rDup').onclick=duplicarMesAnterior;
+  renderC();
+  await carregarPainel();
+  if(pendingGrupo){const gg=pendingGrupo;pendingGrupo=null;carregarGrupo();carregarHistorico(gg);} else renderStatusGrupo();
+}
+async function carregarPainel(){
+  const box=$('#rPainel');if(!box)return;box.innerHTML='<span class="msg">Carregando status dos condomínios...</span>';
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'resumoRateios',competencia:rComp})});
+    const d=await r.json();rResumo=(d&&d.grupos)||{};
+    const todos=grupos();
+    const chip=g=>{const s=rResumo[g];let cor='#8a8f98',txt='não iniciado';
+      if(s&&s.status==='Finalizado'){cor='#5fd6a0';txt='finalizado ✓';}
+      else if(s&&s.lancamentos){cor='#e9c15f';txt=`${s.copiados}/${s.imoveis} copiados`;}
+      return `<button class="btn ghost" style="margin:0 6px 6px 0;border-color:${cor};color:${cor}" onclick="selGrupo(this.dataset.g)" data-g="${esq(g)}">${esq(g)} · ${txt}</button>`;};
+    const fe=todos.filter(g=>rResumo[g]&&rResumo[g].status==='Finalizado').length;
+    const an=todos.filter(g=>rResumo[g]&&rResumo[g].status!=='Finalizado'&&rResumo[g].lancamentos).length;
+    box.innerHTML=`<label>Rateios de ${rComp} — ${fe} finalizados · ${an} em andamento · ${todos.length-fe-an} não iniciados</label><div style="margin-top:4px">${todos.map(chip).join('')}</div>`;
+  }catch(e){box.innerHTML='<span class="msg">Não foi possível carregar o painel de status.</span>';}
+}
+function selGrupo(g){$('#rG').value=g;carregarGrupo();}
+function renderC(){const b=$('#rConta');b.innerHTML='';contas.forEach((k,i)=>{const d=document.createElement('div');d.className='contaline';
+  const sug=divMem[k.serv];
+  d.innerHTML=`<div><label>Serviço</label><select data-sv="${i}">${SERV.map(s=>`<option ${s===k.serv?'selected':''}>${s}</option>`).join('')}</select></div>
+   <div><label>Valor cheio</label><input data-vl="${i}" inputmode="decimal" value="${k.valor}" placeholder="0,00"></div>
+   <div><label>Divisor${sug&&!k.divisor?` <span class="msg" style="cursor:pointer;color:#7db8ff" data-us="${i}">(usar ${sug})</span>`:''}</label><input data-dv="${i}" inputmode="numeric" value="${k.divisor||''}" placeholder="${sug||grpItens.length||'?'}" style="width:70px"></div>
+   <div><label>Complemento</label><input data-cp="${i}" value="${esq(k.compl)}" placeholder="Ref. ${rComp}"></div>
+   <div><button class="btn ghost" data-dl="${i}">×</button></div>`;b.appendChild(d);});
+ b.querySelectorAll('[data-sv]').forEach(e=>e.onchange=()=>{contas[e.dataset.sv].serv=e.value;renderC();});
+ b.querySelectorAll('[data-vl]').forEach(e=>e.oninput=()=>contas[e.dataset.vl].valor=e.value);
+ b.querySelectorAll('[data-dv]').forEach(e=>e.oninput=()=>contas[e.dataset.dv].divisor=e.value);
+ b.querySelectorAll('[data-cp]').forEach(e=>e.oninput=()=>contas[e.dataset.cp].compl=e.value);
+ b.querySelectorAll('[data-us]').forEach(e=>e.onclick=()=>{contas[e.dataset.us].divisor=divMem[contas[e.dataset.us].serv];renderC();});
+ b.querySelectorAll('[data-dl]').forEach(e=>e.onclick=()=>{contas.splice(e.dataset.dl,1);if(!contas.length)contas.push({serv:'Água',valor:'',compl:'',divisor:''});renderC();});}
+async function carregarGrupo(){
+ const g=$('#rG').value;carregarHistorico(g);renderStatusGrupo();
+ if(!g){$('#rInfo').textContent='';grpItens=[];return;}
+ $('#rInfo').textContent='Carregando...';
+ const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'imoveisGrupo',grupo:g})});
+ const d=await r.json();grpItens=d.itens||[];const nc=grpItens.filter(x=>x.naoCobrar).length,loc=grpItens.filter(x=>x.status==='Locado').length;
+ $('#rInfo').innerHTML=`${grpItens.length} imóveis no grupo · <b style="color:#5fd6a0">${loc} locados</b>${nc?` · ${nc} não cobrar`:''} · <span class="msg">divisor sugerido por conta abaixo</span>`;
+ try{const dv=await aiPost({action:'divisoresGrupo',grupo:g});divMem=dv.divisores||{};renderC();}catch(e){divMem={};}}
+function renderStatusGrupo(){
+  const sel=$('#rG');const box=$('#rStatus');if(!box)return;
+  const g=sel?sel.value:'';
+  if(!g){box.innerHTML='';rFinalizado=false;if($('#rGer'))$('#rGer').disabled=false;return;}
+  const s=rResumo[g];
+  rFinalizado=!!(s&&s.status==='Finalizado');
+  if($('#rGer'))$('#rGer').disabled=rFinalizado;
+  if(!s||!s.lancamentos){box.innerHTML=`<div class="msg">Nenhum lançamento de ${rComp} para este condomínio ainda.</div>`;return;}
+  box.innerHTML=`<div class="card2" style="padding:10px 12px;border-left:4px solid ${rFinalizado?'#5fd6a0':'#e9c15f'}">
+    <b>Rateio ${rComp}</b> · ${s.lancamentos} lançamentos · total ${money(s.total)} · ${s.copiados} de ${s.imoveis} imóveis copiados
+    · <b style="color:${rFinalizado?'#5fd6a0':'#e9c15f'}">${rFinalizado?'FINALIZADO':'EM ANDAMENTO'}</b>${rFinalizado&&s.finalizadoEm?` <span class="msg">(${s.finalizadoEm})</span>`:''}
+    <div style="margin-top:8px">
+      <button class="btn ghost" onclick="abrirCompetencia('${rComp}')">Abrir lançamentos</button>
+      ${rFinalizado
+        ?`<button class="btn solid" style="background:#8a6d1f" onclick="reabrirRateioUI()">🔓 Reabrir para lançar</button>`
+        :`<button class="btn solid" onclick="finalizarRateioUI()">Finalizar rateio do mês</button>`}
+      ${EU.cargo==='admin'?`<button class="btn ghost" title="corrige linhas de status duplicadas (causa de 'finalizei mas continua pendente')" onclick="repararStatusUI()">reparar status</button>`:''}
+    </div></div>`;
+}
+async function finalizarRateioUI(){
+  const g=$('#rG').value;if(!g)return;
+  const s=rResumo[g]||{};
+  const falta=(s.imoveis||0)-(s.copiados||0);
+  if(!confirm(`Finalizar o rateio ${rComp} de "${g}"?`+(falta>0?`\nAtenção: ${falta} imóvel(is) ainda sem "copiado".`:'')+`\n\nApós finalizar, ele fica gravado como o rateio oficial do mês e travado contra alterações.`))return;
+  setSync('saving');
+  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'finalizarRateio',grupo:g,competencia:rComp})});
+    const d=await r.json();
+    if(d.ok){toast(`Rateio ${rComp} de ${g} finalizado ✓`);setSync('');await carregarPainel();renderStatusGrupo();}
+    else{toast('Erro: '+(d.erro||'?'));setSync('err');}}
+  catch(e){toast('Falha de conexão.');setSync('err');}
+}
+async function repararStatusUI(){
+  if(!confirm('Remover linhas de status duplicadas da aba RateioStatus?\n\nMantém a mais recente de cada grupo/mês. Não mexe nos lançamentos.'))return;
+  const r=await aiPost({action:'repararRateioStatus'});
+  if(r.ok){alert('Pronto: '+r.removidas+' linha(s) duplicada(s) removida(s), '+r.restantes+' grupo(s) consolidado(s).');rResumo={};telaRateio();}
+  else alert('erro: '+(r.erro||'?'));
+}
+async function reabrirRateioUI(){
+  const g=$('#rG').value;if(!g)return;
+  if(!confirm(`Reabrir o rateio ${rComp} de "${g}" para edição?`))return;
+  setSync('saving');
+  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'reabrirRateio',grupo:g,competencia:rComp})});
+    const d=await r.json();
+    if(d.ok){toast('Rateio reaberto para edição.');setSync('');await carregarPainel();renderStatusGrupo();}
+    else{toast('Erro: '+(d.erro||'?'));setSync('err');}}
+  catch(e){toast('Falha de conexão.');setSync('err');}
+}
+async function carregarHistorico(grupo){
+  const box=$('#rHist');if(!grupo){box.innerHTML='';return;}
+  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'historicoRateio',grupo})});
+    const d=await r.json();window._hist=d.linhas||[];
+    if(!d.competencias.length){box.innerHTML='<span class="msg">Sem histórico ainda.</span>';return;}
+    box.innerHTML='<label>Histórico</label>'+d.competencias.map(c=>`<button class="btn ghost" style="margin:0 6px 6px 0" onclick="abrirCompetencia('${c}')">${c}</button>`).join('');
+  }catch(e){box.innerHTML='';}
+}
+async function abrirCompetencia(comp,semRecarregar){
+  const g=$('#rG').value;
+  // SEMPRE busca do servidor: se alguém mexeu na planilha, a tela não fica com IDs velhos
+  if(!semRecarregar&&g){
+    try{setSync('saving');
+      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'historicoRateio',grupo:g})});
+      const d=await r.json();window._hist=d.linhas||[];setSync('');
+    }catch(e){setSync('err');}
+  }
+  const ls=(window._hist||[]).filter(l=>String(l['Competência'])===String(comp));
+  if(!ls.length){$('#rOut').innerHTML=`<div class="card2"><div class="msg">Nenhum lançamento em ${esq(comp)} para este condomínio.</div></div>`;return;}
+  const porImovel={};ls.forEach(l=>{(porImovel[l['Cód Imóvel']]=porImovel[l['Cód Imóvel']]||[]).push(l);});
+  window._l=ls.map(l=>({id:l['ID'],comp:l['Competência'],grupo:l['Grupo'],cod:l['Cód Imóvel'],end:l['Endereço'],serv:l['Serviço'],valor:Number(l['Valor'])||0,compl:l['Complemento'],nc:String(l['Não cobrar']).trim()==='Sim',copiado:String(l['Copiado']).trim()==='Sim'}));
+  const total=ls.reduce((a,l)=>a+(Number(l['Valor'])||0),0);
+  const copias=ls.filter(l=>/C[ÓO]PIA/i.test(String(l['Complemento']||''))).length;
+  let h=`<div class="card2"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <div class="msg">Competência <b>${esq(comp)}</b> · ${ls.length} lançamentos · total ${money(total)}</div>
+      <button class="btn ghost" style="margin-left:auto" onclick="abrirCompetencia('${esq(comp)}')">recarregar</button>
+      ${EU.cargo==='admin'?`<button class="btn ghost" style="color:#ff8a8a" onclick="apagarComp('${esq(comp)}')">apagar competência</button>`:''}
+    </div>
+    ${copias?`<div class="alert" style="margin-top:8px">⚠ ${copias} lançamento(s) ainda marcados como CÓPIA do mês anterior. Revise os valores e limpe o complemento antes de finalizar.</div>`:''}
+  </div>`;
+  Object.keys(porImovel).forEach(cod=>{
+    const im=porImovel[cod];const first=im[0];const jaCop=String(first['Copiado']).trim()==='Sim';
+    h+=`<div class="imv${jaCop?' copiado':''}" id="i-${String(cod).replace(/\W/g,'')}"><div class="top"><span class="id">#${esq(cod)}</span><span class="end">${esq(first['Endereço']||'')}</span><button class="btn ghost" style="margin-left:auto" onclick="ct('${esq(cod)}')">Copiar tudo</button></div>`;
+    im.forEach(x=>{
+      const id=String(x['ID']||'');
+      h+=`<div style="margin-bottom:6px;border-left:2px solid rgba(255,255,255,.06);padding-left:6px">
+        <div class="fields">
+          <div class="f" onclick="cp(this,'${money(x['Valor'])}')"><div class="k">Valor</div><div class="v">${money(x['Valor'])}</div><span class="cp">copiar</span></div>
+          <div class="f" onclick="cp(this,this.dataset.t)" data-t="${esq(x['Serviço'])}"><div class="k">Serviço</div><div class="v">${esq(x['Serviço'])}</div><span class="cp">copiar</span></div>
+          <div class="f" onclick="cp(this,this.dataset.t)" data-t="${esq(x['Complemento']||'')}"><div class="k">Complemento</div><div class="v">${esq(x['Complemento']||'—')}</div><span class="cp">copiar</span></div>
+        </div>
+        <div style="margin-top:2px;display:flex;gap:6px">
+          <button class="btn ghost" style="padding:1px 8px;font-size:12px" onclick="edLanc('${esq(id)}')">editar</button>
+          <button class="btn ghost" style="padding:1px 8px;font-size:12px;color:#ff8a8a" onclick="delLanc('${esq(id)}','${esq(x['Serviço'])}','${money(x['Valor'])}')">excluir</button>
+        </div></div>`;
+    });
+    h+=`<div style="margin-top:4px"><button class="btn ghost" onclick="mc('${esq(cod)}',this)">${jaCop?'Copiado ✓':'Marcar copiado'}</button></div></div>`;
+  });
+  $('#rOut').innerHTML=h;
+  const tot=Object.keys(porImovel).length,fez=Object.keys(porImovel).filter(c=>String(porImovel[c][0]['Copiado']).trim()==='Sim').length;
+  toast(`${comp}: ${fez} de ${tot} imóveis copiados.`);
+}
+/* apaga TODOS os lançamentos de um grupo numa competência (evita ter que mexer na planilha) */
+async function apagarComp(comp){
+  const g=$('#rG').value;
+  if(!g){toast('Escolha o condomínio primeiro.');return;}
+  const qtd=(window._l||[]).filter(x=>String(x.comp)===String(comp)).length;
+  if(!confirm(`Apagar TODOS os ${qtd} lançamentos de ${comp} do condomínio "${g}"?\n\nUse isso quando a cópia do mês anterior saiu errada e você quer começar do zero.`))return;
+  if(!confirm('Confirma? Esta ação remove as linhas da planilha e não tem desfazer.'))return;
+  setSync('saving');
+  const r=await aiPost({action:'excluirRateioComp',grupo:g,competencia:comp});
+  if(r.ok){setSync('');toast(`${r.removidas} lançamento(s) removido(s).`);await carregarPainel();carregarHistorico(g);renderStatusGrupo();abrirCompetencia(comp);}
+  else{setSync('err');toast('Erro: '+(r.erro||'?'));}
+}
+/* edita valor/complemento de um lançamento sem sair da tela */
+async function edLanc(id){
+  const it=(window._l||[]).find(x=>String(x.id)===String(id));
+  if(!it){toast('Lançamento não encontrado. Clique em recarregar.');return;}
+  const nv=prompt('Valor do lançamento ('+it.serv+'):', String(it.valor).replace('.',','));
+  if(nv===null)return;
+  const nc=prompt('Complemento:', it.compl||'');
+  if(nc===null)return;
+  setSync('saving');
+  const r=await aiPost({action:'salvarLancamentoRateio',id,dados:{valor:pn(nv),compl:nc}});
+  if(r.ok){setSync('');toast('Lançamento atualizado.');abrirCompetencia(it.comp);}
+  else{setSync('err');toast('Erro: '+(r.erro||'?'));}
+}
+async function delLanc(id,serv,val){
+  if(!confirm('Excluir este lançamento?\n\n'+serv+' · '+val+'\n\nIsso remove a linha da planilha.'))return;
+  const it=(window._l||[]).find(x=>String(x.id)===String(id));
+  setSync('saving');
+  const r=await aiPost({action:'excluirLancamentoRateio',id});
+  if(r.ok){setSync('');toast('Lançamento excluído.');abrirCompetencia(it?it.comp:rComp);}
+  else{setSync('err');toast('Erro: '+(r.erro||'?'));}
+}
+async function duplicarMesAnterior(){
+  const g=$('#rG').value;if(!g){toast('Escolha um condomínio primeiro.');return;}
+  // mês anterior a rComp
+  const m=rComp.match(/^(\d{2})\/(\d{4})$/);let mes=+m[1]-1,ano=+m[2];if(mes<1){mes=12;ano--;}
+  const ant=('0'+mes).slice(-2)+'/'+ano;
+  if(!confirm(`Copiar os lançamentos de ${ant} do grupo "${g}" para ${rComp}?\n\nEles virão marcados como "cópia, revisar" com os mesmos valores. Você ajusta o que mudou e finaliza.`))return;
+  setSync('saving');
+  const r=await aiPost({action:'duplicarCompetencia',grupo:g,de:ant,para:rComp});
+  if(r.ok){toast(`${r.copiadas} lançamento(s) copiado(s) de ${ant}. Revise e finalize.`);setSync('');await carregarPainel();carregarHistorico(g);renderStatusGrupo();abrirCompetencia(rComp);}
+  else{toast('Erro: '+(r.erro||'?'));setSync('err');}
+}
+function pn(s){return parseFloat(String(s).replace(/\./g,'').replace(',','.'))||0;}
+/* FIX centavos: divide em partes de 2 casas e joga a sobra na ÚLTIMA unidade — a soma sempre fecha com o valor cheio */
+function dividirCentavos(total,n){
+  const cent=Math.round(total*100);
+  const base=Math.floor(cent/n);
+  const sobra=cent-base*n;
+  const partes=[];
+  for(let i=0;i<n;i++)partes.push((base+(i===n-1?sobra:0))/100);
+  return partes;
+}
+function gerar(){
+  const g=$('#rG').value;const comp=rComp;
+  if(rFinalizado){$('#rOut').innerHTML=`<div class="msg">Rateio ${comp} de ${esq(g)} está FINALIZADO. Reabra para alterar.</div>`;return;}
+  if(!g||!grpItens.length){$('#rOut').innerHTML='<div class="msg">Escolha um condomínio com imóveis.</div>';return;}
+  const vc=contas.filter(k=>pn(k.valor)>0);if(!vc.length){$('#rOut').innerHTML='<div class="msg">Informe ao menos uma conta com valor.</div>';return;}
+  const linhas=[];let avisoDiv='';
+  vc.forEach(k=>{
+    const div=parseInt(k.divisor,10)||grpItens.length; // divisor da conta (ou nº de imóveis)
+    const cota=pn(k.valor)/div;
+    let cobrado=0;
+    grpItens.forEach(im=>{
+      const val=Math.round(cota*100)/100;cobrado+=val;
+      linhas.push({id:`${comp}|${g}|${im.cod}|${k.serv}`,comp,grupo:g,cod:im.cod,end:im.endereco,serv:k.serv,valor:val,compl:k.compl||('Ref. '+comp),nc:im.naoCobrar});
+    });
+    // se o divisor é MAIOR que o nº de imóveis, o excedente vai pro proprietário
+    const exc=Math.round((pn(k.valor)-cobrado)*100)/100;
+    if(Math.abs(exc)>=0.01){
+      linhas.push({id:`${comp}|${g}|PROPRIETARIO|${k.serv}`,comp,grupo:g,cod:'(proprietário)',end:'Excedente absorvido pelo proprietário',serv:k.serv,valor:exc,compl:'Excedente '+k.serv+' (divisor '+div+')',nc:false,exc:true});
+      avisoDiv+=`${k.serv}: divisor ${div}, ${grpItens.length} imóveis, proprietário absorve ${money(exc)}. `;
+    }
+  });
+  window._l=linhas;
+  let h=`<div class="card2"><div class="msg">${grpItens.length} imóveis × ${vc.length} conta(s) = ${linhas.length} lançamentos · <span id="cntCop">0 de ${grpItens.length}</span> imóveis copiados</div><div style="margin-top:8px"><button class="save" id="ls">Salvar tudo na planilha</button> <span class="msg" id="lm"></span></div></div>`;
+  grpItens.forEach(im=>{const ls=linhas.filter(x=>x.cod===im.cod);
+   h+=`<div class="imv${im.naoCobrar?' naocobrar':''}" id="i-${String(im.cod).replace(/\W/g,'')}"><div class="top"><span class="id">#${im.cod}</span><span class="end">${esq(im.endereco||'')}</span>${im.status==='Locado'?'<span class="pill st-Locado">Locado</span>':''}${im.naoCobrar?'<span class="pill">não cobrar</span>':''}<button class="btn ghost" style="margin-left:auto" onclick="ct('${im.cod}')">Copiar tudo</button></div>`;
+   ls.forEach(x=>h+=`<div style="margin-bottom:6px"><div class="fields">
+    <div class="f" onclick="cp(this,'${money(x.valor)}')"><div class="k">Valor</div><div class="v">${money(x.valor)}</div><span class="cp">copiar</span></div>
+    <div class="f" onclick="cp(this,this.dataset.t)" data-t="${esq(x.serv)}"><div class="k">Serviço</div><div class="v">${esq(x.serv)}</div><span class="cp">copiar</span></div>
+    <div class="f" onclick="cp(this,this.dataset.t)" data-t="${esq(x.compl||'')}"><div class="k">Complemento</div><div class="v">${esq(x.compl||'—')}</div><span class="cp">copiar</span></div></div></div>`);
+   h+=`<div style="margin-top:4px"><button class="btn ghost" onclick="mc('${im.cod}',this)">Marcar copiado</button></div></div>`;});
+  $('#rOut').innerHTML=h;$('#ls').onclick=salvarTudo;
+}
+function cp(el,t){navigator.clipboard&&navigator.clipboard.writeText(t);const s=el.querySelector('.cp');if(s){s.textContent='✓';setTimeout(()=>s.textContent='copiar',800);}}
+function ct(c){const ls=(window._l||[]).filter(x=>String(x.cod)===String(c));
+ navigator.clipboard&&navigator.clipboard.writeText(ls.map(x=>`\t${money(x.valor)}\t${x.serv}\t${x.compl||''}`).join('\n'));
+ toast('Linha(s) do imóvel #'+c+' copiada(s).');}
+/* FIX: 1 requisição em lote + confirmação; se falhar, reverte o visual */
+async function mc(c,btn){
+  const el=$('#i-'+String(c).replace(/\W/g,''));
+  const on=!el.classList.contains('copiado');
+  el.classList.toggle('copiado',on);btn.textContent=on?'Copiado ✓':'Marcar copiado';btn.disabled=true;
+  const tot=document.querySelectorAll('.imv').length,fez=document.querySelectorAll('.imv.copiado').length;
+  const cc=document.getElementById('cntCop');if(cc)cc.textContent=fez+' de '+tot;
+  const ids=(window._l||[]).filter(x=>String(x.cod)===String(c)).map(x=>x.id);
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'toggleCopiadoLote',ids,valor:on})});
+    const d=await r.json();
+    if(!d.ok)throw new Error(d.erro||'?');
+    if(!d.marcadas){
+      // nenhum ID foi encontrado na planilha: a tela está desatualizada (linhas apagadas/regeradas).
+      // NUNCA deixar o visual marcado sem ter salvo, senão parece que salvou e não salvou.
+      el.classList.toggle('copiado',!on);btn.textContent=!on?'Copiado ✓':'Marcar copiado';
+      const cc2=document.getElementById('cntCop');if(cc2)cc2.textContent=document.querySelectorAll('.imv.copiado').length+' de '+document.querySelectorAll('.imv').length;
+      toast('Não salvou: esses lançamentos não existem mais na planilha. Clique em recarregar.');
+      setSync('err');
+    }else if(d.naoAchados){
+      toast(`Marcados ${d.marcadas}, mas ${d.naoAchados} lançamento(s) não existem mais. Recarregue para conferir.`);
+    }
+  }catch(e){
+    el.classList.toggle('copiado',!on);btn.textContent=!on?'Copiado ✓':'Marcar copiado';
+    toast('Falha ao marcar na planilha — tente de novo.');setSync('err');
+  }
+  btn.disabled=false;
+}
+async function salvarTudo(){const linhas=(window._l||[]).map(x=>({'ID':x.id,'Competência':x.comp,'Grupo':x.grupo,'Cód Imóvel':x.cod,'Endereço':x.end,'Serviço':x.serv,'Valor':Number(x.valor.toFixed(2)),'Complemento':x.compl,'Não cobrar':x.nc?'Sim':'','Copiado':''}));
+ const divisores={};contas.forEach(k=>{if(pn(k.valor)>0&&(parseInt(k.divisor,10)||0)>0)divisores[k.serv]=parseInt(k.divisor,10);});
+ $('#ls').disabled=true;$('#lm').textContent='Salvando...';setSync('saving');
+ try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'lancarRateio',linhas,divisores})});const d=await r.json();
+  if(d.ok){const parts=[];if(d.inseridas)parts.push(d.inseridas+' novos');if(d.atualizadas)parts.push(d.atualizadas+' atualizados');
+    $('#lm').textContent=(parts.join(' · ')||'nada a salvar')+' ✓';setSync('');toast('Rateio salvo: '+(parts.join(' · ')||'sem mudanças'));
+    await carregarPainel();renderStatusGrupo();}
+  else {$('#lm').textContent='Erro: '+(d.erro||'?');setSync('err');toast('Erro: '+(d.erro||'?'));}}catch(e){$('#lm').textContent='Falha.';setSync('err');}$('#ls').disabled=false;}
+
+const SERV=['Água','Luz','Manutenção','Gás','Outro'];
+
+/* ================= GUIAS: passo a passo / lembretes ================= */
+let gAtual=null,gModoAtivo='ler',gDirty=false;
+async function telaGuias(force){
+  $('#list').style.display='none';$('#state').textContent='';
+  const v=$('#rateioView');v.style.display='';
+  v.innerHTML='<div class="msg" style="padding:20px">Carregando guias...</div>';
+  let guias;
+  try{
+    if(force)delete cache['Guias'];
+    const r=cache['Guias']?{itens:cache['Guias']}:await aiPost({action:'listar',aba:'Guias'});
+    if(r.erro)throw new Error('aba ausente');
+    guias=cache['Guias']=r.itens||[];
+  }catch(e){
+    v.innerHTML='<div class="card2" style="max-width:640px;margin:0 auto;padding:16px"><b>A aba de Guias ainda não existe.</b><br><span class="msg">Abra uma vez esta URL para criar (e volte aqui):</span><br><a href="'+API+'?action=initGuias" target="_blank" style="color:#5fd6a0">'+API+'?action=initGuias</a></div>';
+    return;
+  }
+  if(gAtual&&!guias.find(g=>String(g['ID'])===String(gAtual)))gAtual=null;
+  if(!gAtual&&guias.length)gAtual=String(guias[0]['ID']);
+  const g=guias.find(x=>String(x['ID'])===String(gAtual));
+  const lista=guias.map(x=>`<div onclick="gSel('${eH(String(x['ID']))}')" style="padding:8px 10px;border-radius:8px;cursor:pointer;margin-bottom:4px;${String(x['ID'])===String(gAtual)?'background:rgba(95,214,160,.15);border-left:3px solid #5fd6a0':'background:rgba(255,255,255,.03)'}">
+    <b style="font-size:13px">${eH(String(x['Título']||'(sem título)'))}</b><br><span class="msg" style="font-size:11px">${eH(String(x['Atualizado']||''))}</span></div>`).join('');
+  v.innerHTML=`<div class="card2" style="max-width:1050px;margin:0 auto">
+    <h2 style="margin:0 0 8px">Guias <span class="msg" style="font-size:12px;font-weight:normal">· passo a passo para não esquecer</span></h2>
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:230px;flex-shrink:0">
+        <button class="btn solid" style="width:100%;margin-bottom:8px" onclick="gNovo()">+ novo tópico</button>
+        ${lista||'<div class="msg" style="padding:8px">nenhum tópico ainda</div>'}
+      </div>
+      <div style="flex:1;min-width:0">${g?`
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap">
+          <input id="gTit" value="${eH(String(g['Título']||''))}" oninput="gDirty=true" style="flex:1;min-width:180px;font-weight:bold;font-size:15px">
+          ${['ler','editar','mapa'].map(m=>`<button class="btn ${gModoAtivo===m?'solid':'ghost'}" onclick="gModo('${m}')">${m==='ler'?'📖 ler':m==='editar'?'✎ editar':'🧠 mapa'}</button>`).join('')}
+          <button class="btn solid" id="gSalvarBtn" onclick="gSalvar()">salvar</button>
+          <button class="btn ghost" title="excluir este tópico" onclick="gExcluir()" style="color:#ff8a8a">excluir</button>
+        </div>
+        <div id="gCorpo"></div>`:'<div class="msg" style="padding:20px">crie um tópico ao lado para começar.</div>'}
+      </div>
+    </div></div>`;
+  if(g)gRenderCorpo(g);
+}
+function gSel(id){if(gDirty&&!confirm('Há alterações não salvas. Trocar de tópico mesmo assim?'))return;gDirty=false;window._mapa=null;window._mapaDe=null;mpSel=null;gAtual=id;telaGuias();}
+function gModo(m){
+  if(gModoAtivo==='editar'&&m!=='editar'){const ta=$('#gTexto');if(ta){const g=(cache['Guias']||[]).find(x=>String(x['ID'])===String(gAtual));if(g)g['Conteúdo']=ta.value;}}
+  gModoAtivo=m;telaGuias();
+}
+function gRenderCorpo(g){
+  const c=$('#gCorpo'),txt=String(g['Conteúdo']||'');
+  if(gModoAtivo==='editar'){
+    c.innerHTML=`<textarea id="gTexto" oninput="gDirty=true" style="width:100%;min-height:420px;font-size:13.5px;line-height:1.55;font-family:inherit">${eH(txt)}</textarea>
+    <div class="msg" style="margin-top:6px">Dica: "# título" vira seção · "1." ou "-" viram passos · <b>2 espaços de recuo</b> por nível viram ramos no 🧠 mapa mental.</div>`;
+  }else if(gModoAtivo==='mapa'){
+    if(!window._mapa||window._mapaDe!==String(g['ID'])){window._mapa=mpCarrega(g);window._mapaDe=String(g['ID']);mpSel=window._mapa.i;}
+    mpPinta();
+  }else{
+    c.innerHTML=`<div style="padding:6px 2px;font-size:14px;line-height:1.7">${gTextoHTML(txt)}</div>`;
+  }
+}
+function gTextoHTML(txt){
+  let n=0;
+  return txt.split('\n').map(l=>{
+    const t=l.trim();
+    if(!t)return '<div style="height:8px"></div>';
+    if(/^#/.test(t))return `<div style="font-weight:bold;font-size:16px;color:#5fd6a0;margin-top:10px">${eH(t.replace(/^#+\s*/,''))}</div>`;
+    if(/^(\d+[.)]|-)\s/.test(t)){n++;return `<div style="display:flex;gap:8px;margin:3px 0"><span style="color:#5fd6a0;font-weight:bold;min-width:22px">${t.match(/^\d+/)?t.match(/^\d+/)[0]+'.':'•'}</span><span>${eH(t.replace(/^(\d+[.)]|-)\s*/,''))}</span></div>`;}
+    return `<div>${eH(t)}</div>`;
+  }).join('');
+}
+function gArvore(txt){
+  const root={t:'',filhos:[]},pilha=[{nivel:-1,no:root}];
+  txt.split('\n').forEach(l=>{
+    if(!l.trim())return;
+    const nivel=Math.floor((l.match(/^[ \t]*/)[0].replace(/\t/g,'  ').length)/2);
+    const no={t:l.trim().replace(/^(#+|\d+[.)]|-)\s*/,''),filhos:[]};
+    while(pilha.length>1&&pilha[pilha.length-1].nivel>=nivel)pilha.pop();
+    pilha[pilha.length-1].no.filhos.push(no);
+    pilha.push({nivel,no});
+  });
+  return root;
+}
+async function gNovo(){
+  const t=prompt('Título do novo tópico:');
+  if(!t)return;
+  const r=await aiPost({action:'adicionar',aba:'Guias',dados:{'Título':t,'Conteúdo':'# '+t+'\n1. primeiro passo...\n','Atualizado':aiHoje()}});
+  if(r.ok){delete cache['Guias'];gAtual=null;gModoAtivo='editar';await telaGuias(true);
+    const guias=cache['Guias']||[];const novo=guias.find(g=>String(g['Título'])===t);
+    if(novo){gAtual=String(novo['ID']);telaGuias();}}
+  else alert('erro ao criar: '+(r.erro||'?'));
+}
+async function gSalvar(){
+  const g=(cache['Guias']||[]).find(x=>String(x['ID'])===String(gAtual));
+  if(!g)return;
+  const btn=$('#gSalvarBtn');if(btn){btn.textContent='salvando...';btn.disabled=true;}
+  const ta=$('#gTexto');
+  const conteudo=ta?ta.value:String(g['Conteúdo']||'');
+  const titulo=($('#gTit')&&$('#gTit').value.trim())||'(sem título)';
+  const mapaJson=(window._mapa&&window._mapaDe===String(gAtual))?JSON.stringify(window._mapa):String(g['Mapa']||'');
+  const r=await aiPost({action:'salvar',aba:'Guias',chaveCol:'ID',chave:gAtual,dados:{'Título':titulo,'Conteúdo':conteudo,'Mapa':mapaJson,'Atualizado':aiHoje()}});
+  if(r.ok){g['Título']=titulo;g['Conteúdo']=conteudo;g['Mapa']=mapaJson;g['Atualizado']=aiHoje();gDirty=false;
+    if(btn){btn.textContent='✓ salvo';setTimeout(()=>{btn.textContent='salvar';btn.disabled=false;},1200);}}
+  else{alert('erro ao salvar: '+(r.erro||'?'));if(btn){btn.textContent='salvar';btn.disabled=false;}}
+}
+async function gExcluir(){
+  const g=(cache['Guias']||[]).find(x=>String(x['ID'])===String(gAtual));
+  if(!g)return;
+  if(!confirm('Excluir o tópico "'+(g['Título']||'')+'"? Isso não pode ser desfeito.'))return;
+  const r=await aiPost({action:'excluir',aba:'Guias',id:gAtual});
+  if(r.ok){delete cache['Guias'];gAtual=null;gDirty=false;window._mapa=null;window._mapaDe=null;telaGuias(true);}
+  else alert('erro: '+(r.erro||'?'));
+}
+/* ---- mapa mental interativo: estrutura própria, independente do texto ---- */
+let mpSel=null,mpDrag=null;
+function mpId(){return 'n'+Math.random().toString(36).slice(2,8);}
+function mpNo(t){return {i:mpId(),t:t||'novo',c:[]};}
+function mpFind(no,id,pai){
+  if(no.i===id)return {no,pai:pai||null,idx:pai?pai.c.indexOf(no):-1};
+  for(const f of (no.c||[])){const r=mpFind(f,id,no);if(r)return r;}
+  return null;
+}
+function mpDesc(no,id){if(no.i===id)return true;return (no.c||[]).some(f=>mpDesc(f,id));}
+function mpAddFilho(root,id){const r=mpFind(root,id);if(!r)return null;const n=mpNo();r.no.c=r.no.c||[];r.no.c.push(n);r.no.f=0;return n.i;}
+function mpAddIrmao(root,id){const r=mpFind(root,id);if(!r||!r.pai)return mpAddFilho(root,root.i);const n=mpNo();r.pai.c.splice(r.idx+1,0,n);return n.i;}
+function mpDel(root,id){const r=mpFind(root,id);if(!r||!r.pai)return false;r.pai.c.splice(r.idx,1);return true;}
+function mpMove(root,id,d){const r=mpFind(root,id);if(!r||!r.pai)return false;const j=r.idx+d;if(j<0||j>=r.pai.c.length)return false;
+  const a=r.pai.c;[a[r.idx],a[j]]=[a[j],a[r.idx]];return true;}
+function mpIndent(root,id){const r=mpFind(root,id);if(!r||!r.pai||r.idx===0)return false;
+  const irmao=r.pai.c[r.idx-1];r.pai.c.splice(r.idx,1);irmao.c=irmao.c||[];irmao.c.push(r.no);irmao.f=0;return true;}
+function mpOutdent(root,id){const r=mpFind(root,id);if(!r||!r.pai)return false;
+  const rp=mpFind(root,r.pai.i);if(!rp||!rp.pai)return false;
+  r.pai.c.splice(r.idx,1);rp.pai.c.splice(rp.idx+1,0,r.no);return true;}
+function mpReparent(root,id,alvoId){
+  if(id===alvoId)return false;
+  const r=mpFind(root,id);if(!r||!r.pai)return false;
+  if(mpDesc(r.no,alvoId))return false;
+  const a=mpFind(root,alvoId);if(!a)return false;
+  r.pai.c.splice(r.idx,1);a.no.c=a.no.c||[];a.no.c.push(r.no);a.no.f=0;delete r.no.fx;delete r.no.fy;return true;
+}
+/* ---- layout: bilateral balanceado + ramos afilados + cor por ramo ---- */
+const MP_COR=['#5fd6a0','#e9c15f','#7db8ff','#ff9a76','#c78fff','#4fd1c5','#f28b82','#a3d977'];
+let mpZ=1;
+function mpDim(no,lv){
+  const t=String(no.t||''),CH=lv===0?7.6:(lv===1?7.1:6.8),MAXW=lv===0?230:(lv===1?200:186);
+  const pad=lv>=2?12:26,base=lv===0?36:(lv===1?32:24);
+  const cabe=Math.floor((MAXW-pad)/CH);
+  if(t.length<=Math.min(22,cabe))return {w:Math.max(lv===0?96:74,t.length*CH+pad),h:base,ln:1,lv};
+  const ln=Math.min(3,Math.ceil(t.length/cabe));
+  return {w:MAXW,h:base+(ln-1)*17,ln,lv};
+}
+function mpLinhas(t,ln,w){
+  if(ln<=1)return [t];
+  const porLn=Math.floor(((w||182)-24)/6.8),out=[];let s=String(t);
+  for(let k=0;k<ln;k++){
+    if(k===ln-1){out.push(s.length>porLn?s.slice(0,porLn-1)+'…':s);break;}
+    let corte=s.lastIndexOf(' ',porLn);if(corte<porLn*0.5)corte=porLn;
+    out.push(s.slice(0,corte));s=s.slice(corte).trim();
+    if(!s)break;
+  }
+  return out;
+}
+function mpPrep(no,lv,ramo){
+  no._lv=lv;no._d=mpDim(no,lv);
+  no._ramo=lv<=1?ramo:ramo; // cor herdada do ramo de 1º nível
+  (no.c||[]).forEach((f,k)=>mpPrep(f,lv+1,lv===0?k:ramo));
+}
+/* divide os ramos de 1º nível entre direita e esquerda equilibrando a altura (auto-balance) */
+function mpSplit(kids){
+  if(kids.length<=3)return {R:kids.slice(),L:[]};
+  const tot=kids.reduce((s,k)=>s+k._h,0);
+  let acc=0,melhor=0,dif=Infinity;
+  for(let k=0;k<kids.length-1;k++){
+    acc+=kids[k]._h;
+    const d=Math.abs(acc-(tot-acc));
+    if(d<dif){dif=d;melhor=k+1;}
+  }
+  return {R:kids.slice(0,melhor),L:kids.slice(melhor)};
+}
+function mpLayout(root){
+  mpPrep(root,0,0);
+  const VG=11,COL=46,PAD=14;
+  const vis=no=>(no.f?[]:(no.c||[]));
+  const autoK=no=>vis(no).filter(f=>f.fx==null);
+  const freeK=no=>vis(no).filter(f=>f.fx!=null);
+  const alt=no=>{const fs=autoK(no);no._h=fs.length?fs.reduce((s,f)=>s+alt(f),0):no._d.h+VG;return no._h;};
+  const pos=(no,anc,y0,dir)=>{no._x=dir>0?anc:anc-no._d.w;no._y=y0+no._h/2;no._dir=dir;pilha(no,dir);};
+  const pilha=(no,dir)=>{ // filhos automáticos empilhados + filhos livres na posição guardada
+    let acc=no._y-autoK(no).reduce((s,f)=>s+f._h,0)/2;
+    autoK(no).forEach(f=>{pos(f,dir>0?(no._x+no._d.w+COL):(no._x-COL),acc,dir);acc+=f._h;});
+    freeK(no).forEach(f=>{alt(f);f._x=f.fx;f._y=f.fy;f._dir=(f._x>=no._x)?1:-1;f._livre=1;pilha(f,f._dir);});
+  };
+  const kids=autoK(root);
+  kids.forEach(alt);
+  const {R,L}=mpSplit(kids);
+  const hR=R.reduce((s,k)=>s+k._h,0),hL=L.reduce((s,k)=>s+k._h,0);
+  root._h=Math.max(hR,hL,root._d.h+VG);
+  root._x=0;root._y=0;root._dir=0;root._livre=0;
+  let ac=-hR/2;R.forEach(k=>{pos(k,root._d.w+COL,ac,1);ac+=k._h;});
+  ac=-hL/2;L.forEach(k=>{pos(k,-COL,ac,-1);ac+=k._h;});
+  freeK(root).forEach(f=>{alt(f);f._x=f.fx;f._y=f.fy;f._dir=(f._x>=root._x)?1:-1;f._livre=1;pilha(f,f._dir);});
+  const nos=mpNos(root);
+  let minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
+  nos.forEach(n=>{minX=Math.min(minX,n._x);maxX=Math.max(maxX,n._x+n._d.w);
+    minY=Math.min(minY,n._y-n._d.h/2);maxY=Math.max(maxY,n._y+n._d.h/2);});
+  const dx=PAD-minX,dy=PAD-minY;
+  nos.forEach(n=>{n._x+=dx;n._y+=dy;});
+  return {w:maxX-minX+PAD*2,h:maxY-minY+PAD*2};
+}
+function mpOut(no,dir){const y=no._lv>=2?(no._y+no._d.h/2-1):no._y;return {x:dir>0?no._x+no._d.w:no._x,y};}
+function mpIn(no,dir){const y=no._lv>=2?(no._y+no._d.h/2-1):no._y;return {x:dir>0?no._x:no._x+no._d.w,y};}
+function mpRamo(a,b,dir){
+  const p=mpOut(a,dir),q=mpIn(b,dir);
+  const t1=Math.max(1.6,5-(a._lv||0)*1.3),t2=Math.max(1.1,t1*0.5);
+  const dx=Math.max(18,Math.abs(q.x-p.x)*0.5)*(dir>0?1:-1);
+  return `M ${p.x} ${p.y-t1} C ${p.x+dx} ${p.y-t1}, ${q.x-dx} ${q.y-t2}, ${q.x} ${q.y-t2} L ${q.x} ${q.y+t2} C ${q.x-dx} ${q.y+t2}, ${p.x+dx} ${p.y+t1}, ${p.x} ${p.y+t1} Z`;
+}
+function mpNos(root,out){out=out||[];out.push(root);(root.f?[]:(root.c||[])).forEach(f=>mpNos(f,out));return out;}
+function mpArestas(root,out){out=out||[];(root.f?[]:(root.c||[])).forEach(f=>{out.push([root,f]);mpArestas(f,out);});return out;}
+function mpDeArvore(no){const n=mpNo(no.t||'item');n.c=(no.filhos||[]).map(mpDeArvore);return n;}
+function mpCarrega(g){
+  const raw=String(g['Mapa']||'').trim();
+  if(raw){try{const j=JSON.parse(raw);if(j&&j.i)return j;}catch(e){}}
+  return mpNo(String(g['Título']||'Guia')); // começa vazio: o mapa é seu, não do texto
+}
+function mpRender(){
+  const root=window._mapa;
+  const {w,h}=mpLayout(root);
+  const cor=no=>no._lv===0?'#9aa6b2':MP_COR[(no._ramo||0)%MP_COR.length];
+  const ramos=mpArestas(root).map(([a,b])=>`<path d="${mpRamo(a,b,b._dir)}" fill="${cor(b)}" opacity=".55"/>`).join('');
+  const nos=mpNos(root).map(no=>{
+    const c=cor(no),sel=mpSel===no.i,nf=(no.c||[]).length,d=no._d,lv=no._lv,dir=no._dir||1;
+    const txt=mpLinhas(no.t,d.ln,d.w).map(l=>`<div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${eH(l)}</div>`).join('');
+    let est;
+    if(lv===0)est=`background:linear-gradient(135deg,#2e7d5b,#1f6a7d);border:2px solid #5fd6a0;border-radius:11px;font-weight:bold;font-size:14px;color:#eafff5`;
+    else if(lv===1)est=`background:${c}1f;border:1.8px solid ${c};border-radius:9px;font-weight:600;font-size:13px`;
+    else est=`background:transparent;border:0;border-bottom:2px solid ${c};border-radius:0;font-size:12.5px;padding-bottom:2px`;
+    const tgl=nf?`<span class="mpTgl" onmousedown="event.stopPropagation()" onclick="event.stopPropagation();mpTgl('${no.i}')" style="color:${c}">${no.f?'▸'+nf:'▾'}</span>`:'';
+    const btns=`<div class="mpBtns">
+        <span class="mpB" title="novo filho" onmousedown="event.stopPropagation()" onclick="event.stopPropagation();mpFilhoDe('${no.i}')">+</span>
+        ${no._livre?`<span class="mpB" title="voltar ao layout automático" onmousedown="event.stopPropagation()" onclick="event.stopPropagation();mpSnap('${no.i}')">⌂</span>`:''}
+        ${no.i!==root.i?`<span class="mpB" title="excluir" onmousedown="event.stopPropagation()" onclick="event.stopPropagation();mpDelDe('${no.i}')" style="color:#ff8a8a">×</span>`:''}
+      </div>`;
+    return `<div class="mpNo${sel?' mpSel':''}${no._livre?' mpLivre':''}" data-id="${no.i}" style="left:${no._x}px;top:${no._y-d.h/2}px;width:${d.w}px;height:${d.h}px;${est}">
+      ${dir<0?btns:tgl}<div class="mpTxt">${txt}</div>${dir<0?tgl:btns}</div>`;}).join('');
+  return `<style>
+    .mpNo{position:absolute;display:flex;align-items:center;gap:5px;padding:0 8px;cursor:grab;user-select:none;box-sizing:border-box;line-height:16px;transition:filter .12s}
+    .mpNo:hover{filter:brightness(1.3)} .mpSel{box-shadow:0 0 0 2px rgba(95,214,160,.5)}
+    .mpTxt{flex:1;overflow:hidden} .mpTgl{cursor:pointer;font-size:11px;font-weight:bold;flex-shrink:0}
+    .mpBtns{display:none;gap:3px;flex-shrink:0} .mpNo:hover .mpBtns{display:flex}
+    .mpB{cursor:pointer;width:17px;height:17px;line-height:16px;text-align:center;border-radius:5px;background:rgba(255,255,255,.14);font-weight:bold;font-size:13px}
+    .mpB:hover{background:rgba(95,214,160,.4)} .mpAlvo{outline:2px dashed #5fd6a0;outline-offset:3px}
+    .mpLivre{border-style:dashed !important} .mpArrasta{opacity:.85;cursor:grabbing;z-index:9;filter:brightness(1.4)}
+  </style>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center">
+      <button class="btn ghost" onclick="mpOp('filho')" title="Tab">+ filho</button>
+      <button class="btn ghost" onclick="mpOp('irmao')" title="Enter">+ irmão</button>
+      <button class="btn ghost" onclick="mpOp('sobe')">↑</button><button class="btn ghost" onclick="mpOp('desce')">↓</button>
+      <button class="btn ghost" onclick="mpOp('indent')" title="vira filho do de cima">→</button>
+      <button class="btn ghost" onclick="mpOp('outdent')" title="sobe um nível">←</button>
+      <span style="width:8px"></span>
+      <button class="btn ghost" onclick="mpZoom(-1)">−</button><span class="msg" style="min-width:38px;text-align:center">${Math.round(mpZ*100)}%</span><button class="btn ghost" onclick="mpZoom(1)">+</button>
+      <span style="flex:1"></span>
+      <button class="btn ghost" onclick="mpAuto()" title="volta todos os nós ao layout automático">reorganizar</button>
+      <button class="btn ghost" onclick="mpImportar()" title="cria os nós a partir do texto (substitui o mapa)">importar do texto</button>
+      <button class="btn ghost" style="color:#ff8a8a" onclick="mpLimpar()">limpar</button>
+  </div>
+  <div class="msg" style="margin-bottom:6px">arraste para <b>posicionar livre</b> · solte <b>em cima de outro nó</b> para virar filho dele · <b>+</b> cria filho · duplo clique renomeia · ⌂ volta ao automático</div>
+  <div id="mpTela" style="position:relative;overflow:auto;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px;min-height:260px;max-height:62vh" tabindex="0">
+      <div style="width:${Math.round(w*mpZ)}px;height:${Math.round(h*mpZ)}px">
+      <div style="position:relative;width:${w}px;height:${h}px;transform:scale(${mpZ});transform-origin:0 0">
+        <svg width="${w}" height="${h}" style="position:absolute;left:0;top:0;pointer-events:none">${ramos}</svg>${nos}</div></div></div>`;
+}
+function mpSnap(id){const r=mpFind(window._mapa,id);if(!r)return;delete r.no.fx;delete r.no.fy;gDirty=true;mpPinta();}
+function mpAuto(){mpNos(window._mapa).forEach(n=>{delete n.fx;delete n.fy;});gDirty=true;mpPinta();}
+function mpZoom(d){mpZ=Math.max(0.5,Math.min(1.5,Math.round((mpZ+d*0.1)*10)/10));mpPinta();}
+function mpPinta(){const c=$('#gCorpo');if(!c)return;c.innerHTML=mpRender();mpLiga();}
+function mpTgl(id){const r=mpFind(window._mapa,id);if(!r)return;r.no.f=r.no.f?0:1;gDirty=true;mpPinta();}
+function mpFilhoDe(id){mpSel=id;const n=mpAddFilho(window._mapa,id);gDirty=true;mpPinta();if(n){mpSel=n;mpPinta();mpEdita(n);}}
+function mpDelDe(id){
+  const r=mpFind(window._mapa,id);if(!r||!r.pai)return;
+  if((r.no.c||[]).length&&!confirm('Excluir "'+r.no.t+'" e seus '+r.no.c.length+' filho(s)?'))return;
+  const pai=r.pai.i;mpDel(window._mapa,id);mpSel=pai;gDirty=true;mpPinta();
+}
+function mpImportar(){
+  const g=(cache['Guias']||[]).find(x=>String(x['ID'])===String(gAtual));if(!g)return;
+  const arv=gArvore(String(g['Conteúdo']||''));
+  if(!arv.filhos.length){alert('o texto está vazio.');return;}
+  if(!confirm('Isso substitui o mapa atual pelos itens do texto (a indentação vira hierarquia). Continuar?'))return;
+  const root=mpNo(String(g['Título']||'Guia'));
+  root.c=arv.filhos.map(mpDeArvore);
+  window._mapa=root;mpSel=root.i;gDirty=true;mpPinta();
+}
+function mpLimpar(){
+  if(!confirm('Apagar todos os nós do mapa?'))return;
+  const g=(cache['Guias']||[]).find(x=>String(x['ID'])===String(gAtual));
+  window._mapa=mpNo(g?String(g['Título']||'Guia'):'Guia');mpSel=window._mapa.i;gDirty=true;mpPinta();
+}
+function mpOp(op){
+  const root=window._mapa;
+  if(!mpSel||!mpFind(root,mpSel))mpSel=root.i;
+  let novo=null,ok=true;
+  if(op==='filho')novo=mpAddFilho(root,mpSel);
+  else if(op==='irmao')novo=mpAddIrmao(root,mpSel);
+  else if(op==='del'){const r=mpFind(root,mpSel);
+    if(!r||!r.pai){alert('a raiz não pode ser excluída (renomeie o tópico no título).');return;}
+    return mpDelDe(mpSel);}
+  else if(op==='sobe')ok=mpMove(root,mpSel,-1);
+  else if(op==='desce')ok=mpMove(root,mpSel,1);
+  else if(op==='indent')ok=mpIndent(root,mpSel);
+  else if(op==='outdent')ok=mpOutdent(root,mpSel);
+  if(novo){mpSel=novo;gDirty=true;mpPinta();mpEdita(novo);return;}
+  if(ok)gDirty=true;
+  mpPinta();
+}
+function mpEdita(id){
+  const el=document.querySelector('.mpNo[data-id="'+id+'"]');if(!el)return;
+  const r=mpFind(window._mapa,id);if(!r)return;
+  el.innerHTML='<input id="mpInp" value="'+eH(r.no.t)+'" style="width:100%;height:22px;font-size:12.5px;padding:0 4px;border-radius:5px">';
+  const inp=$('#mpInp');inp.focus();inp.select();
+  const fim=s=>{if(s){const v=inp.value.trim();if(v){r.no.t=v;gDirty=true;}}mpPinta();};
+  inp.onblur=()=>fim(true);
+  inp.onmousedown=e=>e.stopPropagation();
+  inp.onkeydown=e=>{e.stopPropagation();
+    if(e.key==='Enter'){e.preventDefault();fim(true);}
+    if(e.key==='Escape'){e.preventDefault();fim(false);}};
+}
+function mpLiga(){
+  const tela=$('#mpTela');if(!tela)return;
+  const raiz=window._mapa;
+  tela.querySelectorAll('.mpNo').forEach(el=>{
+    const id=el.dataset.id;
+    el.onclick=e=>{e.stopPropagation();if(mpDrag&&mpDrag.mov){mpDrag=null;return;}mpSel=id;mpPinta();};
+    el.ondblclick=e=>{e.stopPropagation();mpSel=id;mpEdita(id);};
+    el.onmousedown=e=>{
+      if(e.target.tagName==='INPUT')return;
+      e.preventDefault();
+      mpDrag={id,el,x0:e.clientX,y0:e.clientY,ox:el.offsetLeft,oy:el.offsetTop,mov:false};
+      mpSel=id;
+    };
+  });
+  const alvoSob=e=>[...tela.querySelectorAll('.mpNo')].find(el=>{
+    if(el.dataset.id===mpDrag.id)return false;
+    const r=el.getBoundingClientRect();
+    return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom;});
+  tela.onmousemove=e=>{
+    if(!mpDrag)return;
+    const dx=(e.clientX-mpDrag.x0)/mpZ,dy=(e.clientY-mpDrag.y0)/mpZ;
+    if(!mpDrag.mov&&Math.abs(dx)+Math.abs(dy)<5)return;
+    mpDrag.mov=true;mpDrag.el.classList.add('mpArrasta');
+    mpDrag.el.style.left=(mpDrag.ox+dx)+'px';mpDrag.el.style.top=(mpDrag.oy+dy)+'px';
+    const alvo=alvoSob(e);
+    tela.querySelectorAll('.mpNo').forEach(el=>el.classList.toggle('mpAlvo',!!alvo&&el===alvo));
+  };
+  const fim=e=>{
+    if(!mpDrag)return;
+    const d=mpDrag;mpDrag=null;
+    if(!d.mov)return;
+    d.el.classList.remove('mpArrasta');
+    const alvo=alvoSob({clientX:e.clientX,clientY:e.clientY,__id:d.id})||null;
+    if(alvo){ // soltou em cima de outro nó: vira filho dele
+      if(mpReparent(raiz,d.id,alvo.dataset.id)){gDirty=true;mpSel=d.id;}
+      else alert('não dá para mover um nó para dentro dele mesmo ou de um filho dele.');
+      mpPinta();return;
+    }
+    const r=mpFind(raiz,d.id);
+    if(!r||!r.pai){mpPinta();return;} // a raiz é a âncora do mapa: não fica livre
+    const no=r.no,h=no._d?no._d.h:30;
+    no.fx=parseFloat(d.el.style.left)-raiz._x;      // posição guardada relativa à raiz
+    no.fy=parseFloat(d.el.style.top)+h/2-raiz._y;
+    gDirty=true;mpSel=d.id;mpPinta();
+  };
+  tela.onmouseup=fim;
+  tela.onmouseleave=e=>{if(mpDrag&&mpDrag.mov)fim(e);else mpDrag=null;};
+  tela.onkeydown=e=>{
+    if(!mpSel)return;
+    if(e.key==='Tab'){e.preventDefault();mpOp('filho');}
+    else if(e.key==='Enter'){e.preventDefault();mpOp('irmao');}
+    else if(e.key==='Delete'){e.preventDefault();mpOp('del');}
+    else if(e.key==='F2'){e.preventDefault();mpEdita(mpSel);}
+  };
+}
+/* ---- combo (seletor moderno com busca + criar novo) ---- */
+function combo(hiddenSelector,valores,valorAtual){
+  // retorna HTML; wire depois com wireCombos()
+  return `<div class="combo" data-combo><input type="hidden" ${hiddenSelector} value="${(valorAtual||'').replace(/"/g,'&quot;')}">
+    <input class="cbsearch" placeholder="Buscar ou criar..." value="${(valorAtual||'').replace(/"/g,'&quot;')}" autocomplete="off">
+    <div class="list" data-valores='${JSON.stringify(valores).replace(/'/g,"&#39;")}'></div></div>`;
+}
+function wireCombos(scope){
+  (scope||document).querySelectorAll('[data-combo]').forEach(function(c){
+    if(c._wired)return;c._wired=true;
+    const hid=c.querySelector('input[type=hidden]'), inp=c.querySelector('.cbsearch'), list=c.querySelector('.list');
+    const vals=JSON.parse(list.getAttribute('data-valores')||'[]');
+    function draw(f){
+      f=(f||'').toLowerCase();const m=vals.filter(v=>v.toLowerCase().includes(f));
+      let h=m.map(v=>`<div class="opt" data-v="${v.replace(/"/g,'&quot;')}">${v}</div>`).join('');
+      const exato=vals.some(v=>v.toLowerCase()===f);
+      if(f&&!exato)h+=`<div class="opt new" data-new="${inp.value.replace(/"/g,'&quot;')}">+ criar "${inp.value}"</div>`;
+      list.innerHTML=h||'<div class="opt" style="color:var(--mut)">nada</div>';
+    }
+    inp.onfocus=()=>{draw(inp.value);c.classList.add('open');};
+    inp.oninput=()=>{hid.value=inp.value;draw(inp.value);c.classList.add('open');};
+    list.onclick=e=>{const o=e.target.closest('.opt');if(!o)return;const v=o.dataset.v!=null?o.dataset.v:o.dataset.new;inp.value=v;hid.value=v;c.classList.remove('open');};
+    document.addEventListener('click',e=>{if(!c.contains(e.target))c.classList.remove('open');});
+  });
+}
+/* ---- Duplicados ---- */
+async function verDuplicados(){
+  const modal=$('#modal');
+  modal.innerHTML=`<div class="mhead"><div><h2>Duplicados</h2><div class="cpf">revisão — nada é excluído automaticamente</div></div><button class="x" onclick="fechar()">×</button></div><div class="mbody"><div class="msg">Carregando...</div></div>`;
+  $('#ov').classList.add('on');document.body.style.overflow='hidden';
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'duplicados'})});
+    const d=await r.json();if(!d.ok){modal.querySelector('.mbody').innerHTML='Erro: '+(d.erro||'?');return;}
+    const D=d.dup;let h='<div class="dupwrap">';
+    function bloco(titulo,grupos,fmt){
+      if(!grupos.length)return `<div class="msg">${titulo}: nenhum ✓</div>`;
+      let x=`<div><div class="h" style="color:var(--acc);margin-bottom:6px">${titulo} (${grupos.length})</div>`;
+      grupos.forEach(g=>{x+=`<div class="dupgrp"><div class="h">${g.length} iguais</div>`+g.map(fmt).join('')+`</div>`;});
+      return x+'</div>';
+    }
+    h+=bloco('Imóveis (mesmo endereço)',D.imoveis,it=>`<div class="dupitem">#${it.cod} · ${it.prop||'—'} <span style="opacity:.6">(${it.id||''})</span> — ${it.endereco||''}</div>`);
+    h+=bloco('Proprietários (mesmo CPF)',D.proprietarios,it=>`<div class="dupitem">${it.nome} · ${it.cpf} <span style="opacity:.6">(${it.id||''})</span></div>`);
+    h+='</div>';
+    modal.querySelector('.mbody').innerHTML=h;
+  }catch(e){modal.querySelector('.mbody').innerHTML='Falha de conexão.';}
+}
+
+let EU={usuario:'',cargo:''}; // sessão atual
+function telaLogin(modo){ // modo: 'login' (default) ou 'criar'
+  const criar=modo==='criar';
+  document.body.innerHTML=`<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f1115">
+    <div style="width:340px;background:#1a1d24;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px;text-align:center">
+      <div style="font-size:34px;margin-bottom:6px">${criar?'📝':'🔒'}</div>
+      <h2 style="margin:0 0 4px;color:#e8eaed">Painel Valoriza</h2>
+      <div id="lgMsg" style="color:#8a8f98;font-size:13px;margin-bottom:14px">${criar?'Crie seu acesso. Um admin precisa aprovar antes do primeiro login.':'Entre com seu usuário e senha.'}</div>
+      <input id="lgUser" placeholder="usuário" autocomplete="username" style="width:100%;box-sizing:border-box;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#0f1115;color:#e8eaed;font-size:15px;margin-bottom:8px">
+      <input id="lgSenha" type="password" placeholder="senha" autocomplete="${criar?'new-password':'current-password'}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#0f1115;color:#e8eaed;font-size:15px;margin-bottom:10px">
+      <button id="lgBtn" style="width:100%;padding:10px;border-radius:8px;border:0;background:#2e7d5b;color:#fff;font-weight:bold;font-size:15px;cursor:pointer">${criar?'Criar conta':'Entrar'}</button>
+      <div style="margin-top:12px;font-size:13px"><a id="lgAlt" style="color:#7db8ff;cursor:pointer">${criar?'já tenho conta, entrar':'criar uma conta'}</a></div>
+    </div></div>`;
+  $('#lgAlt').onclick=()=>telaLogin(criar?'login':'criar');
+  const ent=async()=>{
+    const u=$('#lgUser').value.trim(),s=$('#lgSenha').value;
+    if(!u||!s){$('#lgMsg').textContent='preencha usuário e senha.';return;}
+    $('#lgBtn').disabled=true;$('#lgBtn').textContent='...';
+    try{
+      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:criar?'registrar':'login',usuario:u,senha:s})});
+      const d=await r.json();
+      if(criar){
+        if(d.ok){$('#lgMsg').style.color='#5fd6a0';$('#lgMsg').textContent=d.msg||'cadastro enviado.';$('#lgBtn').textContent='ok';setTimeout(()=>telaLogin('login'),1800);}
+        else{$('#lgMsg').style.color='#ff8a8a';$('#lgMsg').textContent=d.erro||'erro';$('#lgBtn').disabled=false;$('#lgBtn').textContent='Criar conta';}
+      }else{
+        if(d.ok){TOKEN=d.token;localStorage.setItem('vlz_token',TOKEN);location.reload();}
+        else{$('#lgMsg').style.color='#ff8a8a';$('#lgMsg').textContent=(d.erro||'usuário ou senha incorretos')+(d.pendente?' (aguardando aprovação)':'');$('#lgBtn').disabled=false;$('#lgBtn').textContent='Entrar';}
+      }
+    }catch(e){$('#lgMsg').textContent='erro de conexão';$('#lgBtn').disabled=false;$('#lgBtn').textContent=criar?'Criar conta':'Entrar';}
+  };
+  $('#lgBtn').onclick=ent;
+  $('#lgSenha').onkeydown=e=>{if(e.key==='Enter')ent();};
+  $('#lgUser').onkeydown=e=>{if(e.key==='Enter')$('#lgSenha').focus();};
+  $('#lgUser').focus();
+}
+/* ---- página de usuários (só admin) ---- */
+async function telaUsuarios(){
+  $('#list').style.display='none';$('#state').textContent='';
+  const v=$('#rateioView');v.style.display='';
+  v.innerHTML='<div class="msg" style="padding:20px">Carregando usuários...</div>';
+  const r=await aiPost({action:'listarUsuarios'});
+  if(r.erro){v.innerHTML='<div class="card2" style="padding:16px">Sem permissão ou erro: '+eH(r.erro)+'</div>';return;}
+  const cargos=['','leitor','assistencia','admin'];
+  const nomeC={'':'pendente','leitor':'leitor','assistencia':'assistência','admin':'admin'};
+  const pend=r.usuarios.filter(u=>u.pendente),ativos=r.usuarios.filter(u=>!u.pendente);
+  const linhaU=u=>`<div style="display:flex;align-items:center;gap:10px;padding:9px 4px;border-top:1px solid rgba(255,255,255,.05)">
+    <div style="flex:1"><b>${eH(u.usuario)}</b> <span class="msg">· ${nomeC[u.cargo]||u.cargo}${u.criadoEm?' · desde '+eH(String(u.criadoEm)):''}</span></div>
+    <select onchange="uSetCargo('${eH(u.usuario)}',this.value)" style="padding:4px 6px">
+      ${cargos.map(c=>`<option value="${c}" ${c===u.cargo?'selected':''}>${nomeC[c]}</option>`).join('')}
+    </select>
+    <button class="btn ghost" style="color:#ff8a8a;padding:2px 8px" onclick="uExcluir('${eH(u.usuario)}')">excluir</button>
+  </div>`;
+  v.innerHTML=`<div class="card2" style="max-width:720px;margin:0 auto">
+    <h2 style="margin:0 0 4px">Usuários</h2>
+    <div class="msg" style="margin-bottom:10px">Aprove pendentes escolhendo um cargo. Assistência edita mas não exclui; leitor só visualiza.</div>
+    ${pend.length?`<div class="card2" style="border-left:4px solid #e9c15f;padding:10px;margin-bottom:10px"><b>Pendentes de aprovação (${pend.length})</b>${pend.map(linhaU).join('')}</div>`:'<div class="msg" style="margin-bottom:10px">nenhum pendente.</div>'}
+    <div class="card2" style="padding:10px"><b>Ativos (${ativos.length})</b>${ativos.map(linhaU).join('')}</div>
+  </div>`;
+}
+async function uSetCargo(usuario,cargo){
+  const r=await aiPost({action:'setCargo',usuario,cargo});
+  if(r.erro)alert('erro: '+r.erro);
+  telaUsuarios();
+}
+async function uExcluir(usuario){
+  if(!confirm('Excluir o usuário "'+usuario+'"? Ele perde o acesso imediatamente.'))return;
+  const r=await aiPost({action:'excluirUsuario',usuario});
+  if(r.erro)alert('erro: '+r.erro);
+  telaUsuarios();
+}
+async function trocarSenha(){
+  const atual=prompt('Senha atual:');if(atual===null)return;
+  const nova=prompt('Nova senha (mínimo 4 caracteres):');if(nova===null)return;
+  const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'trocaSenha',token:TOKEN,atual,nova})});
+  const d=await r.json();
+  if(d.ok){TOKEN=d.token;localStorage.setItem('vlz_token',TOKEN);alert('Senha alterada. Sua sessão foi renovada.');}
+  else alert('erro: '+(d.erro||'?'));
+}
+function podeEditar(){return EU.cargo==='admin'||EU.cargo==='assistencia';}
+function podeExcluir(){return EU.cargo==='admin';}
+function aplicarCargoUI(){
+  const nome={'admin':'admin','assistencia':'assistência','leitor':'leitor'}[EU.cargo]||EU.cargo;
+  const badge=document.getElementById('euBadge');if(badge)badge.textContent=EU.usuario?('👤 '+EU.usuario+' · '+nome):'';
+  const adv=document.getElementById('advBtn');if(adv)adv.style.display=(EU.cargo==='admin')?'inline-block':'none';
+  // leitor: some com botões de escrita globais
+  if(EU.cargo==='leitor'){const a=document.getElementById('add');if(a)a.dataset.lock='1';}
+}
+function sair(){localStorage.removeItem('vlz_token');TOKEN='';location.reload();}
+function fechar(){$('#ov').classList.remove('on');document.body.style.overflow='';}
+$('#ov').onclick=e=>{if(e.target.id==='ov')fechar();};document.onkeydown=e=>{if(e.key==='Escape')fechar();};
+$('#q').oninput=()=>{if(atual!=='Rateio')render();};$('#add').onclick=novo;$('#selbtn').onclick=entrarSel;$('#cancelsel').onclick=sairSel;$('#applygrp').onclick=aplicarGrupo;$('#dupbtn').onclick=verDuplicados;$('#gq').oninput=e=>buscaGlobal(e.target.value);$('#gs').onclick=e=>{if(e.target.id==='gs')fecharBusca();};
+(async function boot(){
+  try{
+    const r=await fetch(API+'?action=ping');const d=await r.json();
+    if(!d.protegido){telaLogin(true);return;}          // primeiro acesso: define a senha
+    if(!TOKEN){telaLogin();return;}                     // protegido e sem token: pede senha
+    // bootstrap: valida sessão E pré-carrega tudo numa chamada só
+    const bt=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'bootstrap'})});
+    const bd=await bt.json();
+    if(bd.precisaLogin){telaLogin();return;}            // token expirado/inválido
+    if(bd.ok){ // popula o cache só quando veio conteúdo (evita gravar vazio e travar)
+      if(bd.imoveis&&bd.imoveis.length)cache['Imóveis']=bd.imoveis;
+      if(bd.proprietarios&&bd.proprietarios.length)cache['Proprietários']=bd.proprietarios;
+      if(bd.fornecedores&&bd.fornecedores.length)cache['Fornecedores']=bd.fornecedores;
+    }
+    try{const er=await aiPost({action:'eu'});if(er.ok){EU={usuario:er.usuario,cargo:er.cargo};}}catch(e){}
+    aplicarCargoUI();
+    carregar();
+  }catch(e){telaLogin();}
+})();
+</script></body></html>
