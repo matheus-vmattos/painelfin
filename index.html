@@ -315,6 +315,7 @@ document.addEventListener('keydown',e=>{
 });
 
 /* ================= TELA HOJE ================= */
+let rotFeitos=0,rotTotal=0;
 async function telaHoje(){
   $('#list').style.display='none';$('#rateioView').style.display='';$('#state').textContent='';
   const v=$('#rateioView');
@@ -636,6 +637,7 @@ async function adicionar(){const dados=coletar();$('#save').disabled=true;$('#ms
 /* RATEIO por Cód Imóvel */
 /* RATEIO por Cód Imóvel — v2: competência travada (mês/ano), painel de status por condomínio,
    finalizar/reabrir rateio do mês, divisão sem perder centavos, marcar copiado em lote. */
+function compAtual(){const d=new Date();return ('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear();}
 let contas=[],grpItens=[],rComp=compAtual(),rResumo={},rFinalizado=false,divMem={};
 function esq(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 async function telaRateio(){
