@@ -1498,7 +1498,9 @@ $('#q').oninput=()=>{if(atual!=='Rateio')render();};$('#add').onclick=novo;$('#s
       if(bd.proprietarios&&bd.proprietarios.length)cache['Proprietários']=bd.proprietarios;
       if(bd.fornecedores&&bd.fornecedores.length)cache['Fornecedores']=bd.fornecedores;
     }
-    try{const er=await aiPost({action:'eu'});if(er.ok){EU={usuario:er.usuario,cargo:er.cargo};}}catch(e){}
+    // bootstrap já devolve usuario/cargo — corta a chamada extra a 'eu'
+    if(bd.usuario)EU={usuario:bd.usuario,cargo:bd.cargo};
+    else{try{const er=await aiPost({action:'eu'});if(er.ok){EU={usuario:er.usuario,cargo:er.cargo};}}catch(e){}} // fallback se o bootstrap não trouxer
     aplicarCargoUI();
     carregar();
   }catch(e){telaLogin();}

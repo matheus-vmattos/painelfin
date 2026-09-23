@@ -597,17 +597,26 @@ async function duplicados() {
 // (isso sozinho já é mais rápido que o Apps Script, que só conseguia
 // uma leitura de sheet por vez dentro da mesma execução)
 // ─────────────────────────────────────────────────────────────────────
-async function bootstrap(competencia?: string) {
-  const [imoveis, grupos, repasses, proprietarios, fornecedores, rateios] = await Promise.all([
+async function bootstrap(competencia: string | undefined, sess: { usuario: string; cargo: string }) {
+  // junta TUDO que o boot() do frontend precisa numa chamada só, inclusive
+  // a sessão (usuario/cargo) e a rotina do dia (aba "Hoje", sempre a
+  // primeira que abre) — antes eram 2 chamadas separadas (eu + rotinaDia)
+  // depois do bootstrap, cada uma um round-trip a mais no carregamento inicial
+  const [imoveis, grupos, repasses, proprietarios, fornecedores, rateios, rotina] = await Promise.all([
     listar("Imóveis").then((r) => r.itens).catch(() => []),
     sql`select grupo from grupos order by grupo`.then((r) => r.map((x) => x.grupo)).catch(() => []),
     listar("Repasses").then((r) => r.itens).catch(() => []),
     listar("Proprietários").then((r) => r.itens).catch(() => []),
     listar("Fornecedores").then((r) => r.itens).catch(() => []),
     competencia ? resumoRateios(competencia).then((r) => r.grupos).catch(() => ({})) : Promise.resolve(undefined),
+    rotinaDia().catch(() => null),
   ]);
-  const out: Record<string, unknown> = { ok: true, imoveis, grupos, repasses, proprietarios, fornecedores };
+  const out: Record<string, unknown> = {
+    ok: true, imoveis, grupos, repasses, proprietarios, fornecedores,
+    usuario: sess.usuario, cargo: sess.cargo,
+  };
   if (competencia) out.rateios = rateios;
+  if (rotina) { out.rotinaItens = rotina.itens; out.rotinaFeitos = rotina.feitos; out.rotinaTotal = rotina.total; }
   return out;
 }
 
@@ -673,7 +682,7 @@ export async function handleRequest(req: Request): Promise<Response> {
     if (a === "salvarLancamentoRateio") return json(await salvarLancamentoRateio(b.id as string, b.dados as never));
     if (a === "excluirLancamentoRateio") return json(await excluirLancamentoRateio(b.id as string));
     if (a === "resumoRateios") return json(await resumoRateios(b.competencia as string));
-    if (a === "bootstrap") return json(await bootstrap(b.competencia as string | undefined));
+    if (a === "bootstrap") return json(await bootstrap(b.competencia as string | undefined, sess));
     if (a === "finalizarRateio") return json(await finalizarRateio(b.grupo as string, b.competencia as string));
     if (a === "reabrirRateio") return json(await reabrirRateio(b.grupo as string, b.competencia as string));
     if (a === "excluirRateioComp") return json(await excluirRateioComp(b.grupo as string, b.competencia as string));
