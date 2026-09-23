@@ -5,3 +5,4 @@ supabase/*.dump
 # artefatos de build da Edge Function
 supabase/functions/api/node_modules/
 supabase/functions/api/deno.lock
+supabase/chunks/
