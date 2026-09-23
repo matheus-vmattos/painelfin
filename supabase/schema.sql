@@ -42,9 +42,17 @@ create table if not exists proprietarios (
 create index if not exists idx_proprietarios_cpf on proprietarios (cpf);
 
 -- ── Imóveis ────────────────────────────────────────────────────────────
+-- id é uma chave tecnica (o Postgres gera sozinho, nunca colide) em vez
+-- de texto tipo "IM-0001". Motivo: nos dados reais da planilha, tanto o
+-- "ID" quanto o "Cód Imóvel" tem casos de colisao (imoveis DIFERENTES
+-- que acabaram com o mesmo codigo por erro de digitacao historico) -
+-- usar qualquer um dos dois como chave unica arriscaria misturar ou
+-- sobrescrever imoveis de verdade na migracao. id_planilha guarda o
+-- "IM-0001" antigo so como referencia, sem exigir que seja unico.
 create table if not exists imoveis (
-  id                  text primary key,      -- ex: IM-0001
-  cod_imovel          text unique,
+  id                  bigint generated always as identity primary key,
+  id_planilha         text,                  -- ex: IM-0001 (legado, so referencia)
+  cod_imovel          text,                  -- NAO é unique de propósito (ver comentário acima)
   endereco            text,
   proprietario        text,
   cpf_prop            text,
@@ -63,6 +71,7 @@ create table if not exists imoveis (
 );
 create index if not exists idx_imoveis_cpf_prop on imoveis (cpf_prop);
 create index if not exists idx_imoveis_grupo on imoveis (grupo);
+create index if not exists idx_imoveis_cod_imovel on imoveis (cod_imovel);
 
 -- trigger: mantém proprietarios.qtd_imoveis sempre correto
 -- (na planilha isso era uma fórmula/atualização manual; aqui é automático)
@@ -123,8 +132,17 @@ create table if not exists grupos (
 );
 
 -- ── Rateio (lançamentos) ───────────────────────────────────────────────
+-- id também é chave técnica pelo mesmo motivo do Imóveis: nos dados
+-- reais, 191 grupos de lançamentos (516 linhas) compartilham o mesmo
+-- "ID" composto (competência|grupo|cód|serviço) sendo LANÇAMENTOS
+-- DIFERENTES (valores e complementos distintos) — ex: duas cobranças de
+-- "Manutenção" no mesmo imóvel/mês, uma "Limpeza e conservação" outra
+-- "Material de limpeza". Usar esse composto como chave única apagaria
+-- ~180 lançamentos financeiros reais na migração. id_planilha guarda o
+-- texto antigo só como referência.
 create table if not exists rateio (
-  id                text primary key,        -- ex: "09/2026|Ed. Central|101|Água"
+  id                bigint generated always as identity primary key,
+  id_planilha       text,                    -- ex: "09/2026|Ed. Central|101|Água" (legado, so referencia)
   competencia       text not null,           -- 'MM/AAAA'
   grupo             text not null,
   cod_imovel        text,

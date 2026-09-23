@@ -44,7 +44,7 @@ const TABLES: Record<string, { table: string; prefixo?: string; cols: ColMap }> 
       cod_p: "Cód (P)", observacoes: "Observações" },
   },
   "Imóveis": {
-    table: "imoveis", prefixo: "IM",
+    table: "imoveis", // sem prefixo: id é bigint auto-gerado pelo Postgres (ver schema.sql)
     cols: { id: "ID", cod_imovel: "Cód Imóvel", endereco: "Endereço", proprietario: "Proprietário",
       cpf_prop: "CPF Prop.", pct_recibo: "% Recibo", forma_pagto: "Forma Pagto", banco: "Banco",
       agencia: "Agência", conta: "Conta", nominal: "Nominal",
@@ -227,8 +227,12 @@ async function salvar(aba: string, chaveCol: string, chave: string, dados: Recor
   const row = apiToRow(t.cols, dados);
   if (!Object.keys(row).length) return { ok: true, linha: 0 };
   const sets = Object.entries(row).map(([k, v]) => sql`${sql(k)} = ${v as never}`);
+  // atualiza só UMA linha (a de id mais baixo), mesmo que chaveCol tenha
+  // colisão nos dados (ex: Cód Imóvel duplicado por erro histórico na
+  // planilha) — nunca sobrescreve várias linhas de uma vez por engano
   const r = await sql`update ${sql(t.table)} set ${sets.reduce((a, b) => sql`${a}, ${b}`)}, atualizado_em = now()
-                       where ${sql(pgChaveCol)} = ${chave} returning id`;
+                       where id = (select id from ${sql(t.table)} where ${sql(pgChaveCol)} = ${chave} order by id limit 1)
+                       returning id`;
   if (!r.length) return { ok: false, erro: "chave nao encontrada" };
   return { ok: true, linha: 1 };
 }
@@ -237,13 +241,15 @@ async function adicionar(aba: string, dados: Record<string, unknown>) {
   if (!t) return { ok: false, erro: "aba desconhecida: " + aba };
   const row = apiToRow(t.cols, dados);
   if (!row.id && t.prefixo) row.id = await nextId(t.prefixo);
-  await sql`insert into ${sql(t.table)} ${sql(row)}`;
-  return { ok: true, id: row.id || "" };
+  // "returning id" também cobre Imóveis (sem prefixo): o Postgres gera o
+  // bigint sozinho e devolvemos ele pro frontend usar em seguida
+  const r = await sql`insert into ${sql(t.table)} ${sql(row)} returning id`;
+  return { ok: true, id: String(row.id ?? r[0]?.id ?? "") };
 }
 async function excluir(aba: string, id: string) {
   const t = TABLES[aba];
   if (!t) return { ok: false, erro: "aba desconhecida: " + aba };
-  const r = await sql`delete from ${sql(t.table)} where id=${id} returning id`;
+  const r = await sql`delete from ${sql(t.table)} where id::text=${String(id)} returning id`;
   if (!r.length) return { ok: false, erro: "id nao encontrado" };
   return { ok: true };
 }
@@ -331,16 +337,24 @@ async function lancarRateio(linhas: Record<string, unknown>[], divisores?: Recor
   let inseridas = 0, atualizadas = 0;
   await sql.begin(async (tx) => {
     for (const d of linhas) {
+      // "ID" que o frontend manda é a chave de negócio (competência|grupo|cód|serviço),
+      // recalculada a cada "Gerar por imóvel" — não é a chave técnica da linha (essa
+      // é o id bigint, que o frontend nunca vê nem precisa ver aqui). Guardamos essa
+      // chave em id_planilha e fazemos upsert por ela: se já existe uma linha com essa
+      // combinação, atualiza em vez de duplicar (preserva o "copiado" já marcado).
+      // Se por acaso houver mais de uma linha com o mesmo id_planilha (dado histórico
+      // migrado com colisão), atualiza a mais recente — nunca todas de uma vez.
+      const idPlanilha = String(d["ID"] || "").trim() || `${comp}|${grupo}|${d["Cód Imóvel"]}|${d["Serviço"]}`;
       const row = apiToRow(RATEIO_COLS, d);
-      delete row.copiado; // nunca sobrescreve o "copiado" já marcado
-      const id = String(d["ID"] || "").trim();
-      if (id) {
-        const r = await tx`update rateio set ${tx(row)}, atualizado_em=now() where id=${id} returning id`;
-        if (r.length) { atualizadas++; continue; }
-      }
+      delete row.id; delete row.copiado; // "copiado" nunca é sobrescrito por aqui
+      const r = await tx`update rateio set ${tx(row)}, atualizado_em=now()
+                          where id = (select id from rateio where id_planilha=${idPlanilha} order by id desc limit 1)
+                          returning id`;
+      if (r.length) { atualizadas++; continue; }
       const full = apiToRow(RATEIO_COLS, d);
-      full.id = id || `${comp}|${grupo}|${d["Cód Imóvel"]}|${d["Serviço"]}`;
-      await tx`insert into rateio ${tx(full)} on conflict (id) do update set ${tx(row)}, atualizado_em=now()`;
+      delete full.id;
+      full.id_planilha = idPlanilha;
+      await tx`insert into rateio ${tx(full)}`;
       inseridas++;
     }
     if (divisores) {
@@ -356,15 +370,16 @@ async function lancarRateio(linhas: Record<string, unknown>[], divisores?: Recor
   return { ok: true, inseridas, atualizadas };
 }
 async function toggleCopiado(id: string, valor: boolean) {
-  const r = await sql`update rateio set copiado=${valor ? "Sim" : ""} where id=${id} returning id`;
+  const r = await sql`update rateio set copiado=${valor ? "Sim" : ""} where id::text=${String(id)} returning id`;
   if (!r.length) return { ok: false, erro: "id nao encontrado" };
   return { ok: true };
 }
 async function toggleCopiadoLote(ids: string[], valor: boolean) {
   if (!ids?.length) return { ok: false, erro: "sem ids" };
-  const r = await sql`update rateio set copiado=${valor ? "Sim" : ""} where id = any(${ids}) returning id`;
-  const achados = new Set(r.map((x) => x.id));
-  const sumidos = ids.filter((i) => !achados.has(i));
+  const idsStr = ids.map(String);
+  const r = await sql`update rateio set copiado=${valor ? "Sim" : ""} where id::text = any(${idsStr}) returning id`;
+  const achados = new Set(r.map((x) => String(x.id)));
+  const sumidos = idsStr.filter((i) => !achados.has(i));
   return { ok: true, marcadas: r.length, naoAchados: sumidos.length, idsSumidos: sumidos.slice(0, 5) };
 }
 async function divisoresGrupo(grupo: string) {
@@ -386,7 +401,7 @@ async function duplicarCompetencia(grupo: string, de: string, para: string) {
   if (!origem.length) return { ok: false, erro: `sem lançamentos em ${de} para copiar` };
   await sql.begin(async (tx) => {
     for (const row of origem) {
-      await tx`insert into rateio (id, competencia, grupo, cod_imovel, endereco, servico, data_referencia, valor, complemento, nao_cobrar, copiado)
+      await tx`insert into rateio (id_planilha, competencia, grupo, cod_imovel, endereco, servico, data_referencia, valor, complemento, nao_cobrar, copiado)
                 values (${`${para}|${grupo}|${row.cod_imovel}|${row.servico}`}, ${para}, ${grupo}, ${row.cod_imovel}, ${row.endereco},
                         ${row.servico}, ${row.data_referencia}, ${row.valor}, ${"CÓPIA de " + de + " (revisar)"}, ${row.nao_cobrar}, '')`;
     }
@@ -396,22 +411,24 @@ async function duplicarCompetencia(grupo: string, de: string, para: string) {
 }
 async function salvarLancamentoRateio(id: string, dados: { valor?: number; compl?: string; serv?: string }) {
   if (!id) return { ok: false, erro: "sem id" };
-  const r0 = await sql`select grupo, competencia from rateio where id=${id}`;
+  id = String(id);
+  const r0 = await sql`select grupo, competencia from rateio where id::text=${id}`;
   if (!r0.length) return { ok: false, erro: "lançamento não encontrado" };
   if (await rateioFinalizado(r0[0].grupo, r0[0].competencia)) return { ok: false, erro: "rateio finalizado: reabra antes de editar" };
   const sets: Record<string, unknown> = {};
   if (dados?.valor != null) sets.valor = Number(dados.valor) || 0;
   if (dados?.compl != null) sets.complemento = String(dados.compl);
   if (dados?.serv != null) sets.servico = String(dados.serv);
-  if (Object.keys(sets).length) await sql`update rateio set ${sql(sets)}, atualizado_em=now() where id=${id}`;
+  if (Object.keys(sets).length) await sql`update rateio set ${sql(sets)}, atualizado_em=now() where id::text=${id}`;
   return { ok: true };
 }
 async function excluirLancamentoRateio(id: string) {
   if (!id) return { ok: false, erro: "sem id" };
-  const r0 = await sql`select grupo, competencia from rateio where id=${id}`;
+  id = String(id);
+  const r0 = await sql`select grupo, competencia from rateio where id::text=${id}`;
   if (!r0.length) return { ok: false, erro: "lançamento não encontrado" };
   if (await rateioFinalizado(r0[0].grupo, r0[0].competencia)) return { ok: false, erro: "rateio finalizado: reabra antes de excluir" };
-  await sql`delete from rateio where id=${id}`;
+  await sql`delete from rateio where id::text=${id}`;
   return { ok: true, removidas: 1 };
 }
 async function finalizarRateio(grupo: string, comp: string) {
@@ -551,7 +568,7 @@ async function imoveisProp(cpf: string) {
   };
 }
 async function transferir(idImovel: string, novoProp: string, novoCpf: string) {
-  const r = await sql`update imoveis set proprietario=${novoProp}, cpf_prop=${novoCpf || ""}, atualizado_em=now() where id=${idImovel} returning id`;
+  const r = await sql`update imoveis set proprietario=${novoProp}, cpf_prop=${novoCpf || ""}, atualizado_em=now() where id::text=${String(idImovel)} returning id`;
   if (!r.length) return { ok: false, erro: "imovel nao encontrado" };
   return { ok: true };
 }
