@@ -1,0 +1,7 @@
+# nunca versionar dados reais migrados (CPF, financeiro, contatos)
+supabase/dados_migrados.sql
+supabase/*.dump
+
+# artefatos de build da Edge Function
+supabase/functions/api/node_modules/
+supabase/functions/api/deno.lock

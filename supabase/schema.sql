@@ -84,15 +84,15 @@ begin
   -- vazio ganharam uma contagem de imóveis de estranhos por causa disso)
   if (tg_op = 'DELETE') then
     if old.cpf_prop is not null and old.cpf_prop <> '' then
-      update proprietarios set qtd_imoveis = (select count(*) from imoveis where cpf_prop = old.cpf_prop) where cpf = old.cpf_prop;
+      update public.proprietarios set qtd_imoveis = (select count(*) from public.imoveis where cpf_prop = old.cpf_prop) where cpf = old.cpf_prop;
     end if;
     return old;
   end if;
   if new.cpf_prop is not null and new.cpf_prop <> '' then
-    update proprietarios set qtd_imoveis = (select count(*) from imoveis where cpf_prop = new.cpf_prop) where cpf = new.cpf_prop;
+    update public.proprietarios set qtd_imoveis = (select count(*) from public.imoveis where cpf_prop = new.cpf_prop) where cpf = new.cpf_prop;
   end if;
   if (tg_op = 'UPDATE' and old.cpf_prop is distinct from new.cpf_prop and old.cpf_prop is not null and old.cpf_prop <> '') then
-    update proprietarios set qtd_imoveis = (select count(*) from imoveis where cpf_prop = old.cpf_prop) where cpf = old.cpf_prop;
+    update public.proprietarios set qtd_imoveis = (select count(*) from public.imoveis where cpf_prop = old.cpf_prop) where cpf = old.cpf_prop;
   end if;
   return new;
 end;
@@ -112,7 +112,7 @@ begin
   if new.cpf is null or new.cpf = '' then
     new.qtd_imoveis := 0;
   else
-    new.qtd_imoveis := coalesce((select count(*) from imoveis where cpf_prop = new.cpf), 0);
+    new.qtd_imoveis := coalesce((select count(*) from public.imoveis where cpf_prop = new.cpf), 0);
   end if;
   return new;
 end;
