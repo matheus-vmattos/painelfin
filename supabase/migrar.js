@@ -22,6 +22,9 @@ const { Client } = require('pg');
 
 const DIR = __dirname;
 const PASSOS = [
+  // corrige imoveis/rateio se já existirem na estrutura antiga (de uma
+  // execução anterior do schema.sql) — precisa vir ANTES do schema.sql
+  { nome: 'schema_v3_fix_imoveis_rateio.sql', arquivo: path.join(DIR, 'schema_v3_fix_imoveis_rateio.sql'), obrigatorio: true },
   { nome: 'schema.sql', arquivo: path.join(DIR, 'schema.sql'), obrigatorio: true },
   { nome: 'schema_v2_funcs.sql', arquivo: path.join(DIR, 'schema_v2_funcs.sql'), obrigatorio: true },
   { nome: 'dados_migrados.sql', arquivo: path.join(DIR, 'dados_migrados.sql'), obrigatorio: true },
