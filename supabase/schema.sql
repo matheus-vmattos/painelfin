@@ -77,12 +77,21 @@ create index if not exists idx_imoveis_cod_imovel on imoveis (cod_imovel);
 -- (na planilha isso era uma fórmula/atualização manual; aqui é automático)
 create or replace function _sync_qtd_imoveis() returns trigger as $$
 begin
+  -- CPF em branco não é uma chave real: sem essa guarda, todo imóvel sem
+  -- CPF Prop. preenchido conta como se fosse do mesmo "proprietário ''",
+  -- inflando a contagem de qualquer proprietário cujo CPF também esteja
+  -- em branco (achado durante a migração real: 2 proprietários com CPF
+  -- vazio ganharam uma contagem de imóveis de estranhos por causa disso)
   if (tg_op = 'DELETE') then
-    update proprietarios set qtd_imoveis = (select count(*) from imoveis where cpf_prop = old.cpf_prop) where cpf = old.cpf_prop;
+    if old.cpf_prop is not null and old.cpf_prop <> '' then
+      update proprietarios set qtd_imoveis = (select count(*) from imoveis where cpf_prop = old.cpf_prop) where cpf = old.cpf_prop;
+    end if;
     return old;
   end if;
-  update proprietarios set qtd_imoveis = (select count(*) from imoveis where cpf_prop = new.cpf_prop) where cpf = new.cpf_prop;
-  if (tg_op = 'UPDATE' and old.cpf_prop is distinct from new.cpf_prop) then
+  if new.cpf_prop is not null and new.cpf_prop <> '' then
+    update proprietarios set qtd_imoveis = (select count(*) from imoveis where cpf_prop = new.cpf_prop) where cpf = new.cpf_prop;
+  end if;
+  if (tg_op = 'UPDATE' and old.cpf_prop is distinct from new.cpf_prop and old.cpf_prop is not null and old.cpf_prop <> '') then
     update proprietarios set qtd_imoveis = (select count(*) from imoveis where cpf_prop = old.cpf_prop) where cpf = old.cpf_prop;
   end if;
   return new;
@@ -100,7 +109,11 @@ create trigger trg_sync_qtd_imoveis
 -- tendo imóveis vinculados
 create or replace function _init_qtd_imoveis() returns trigger as $$
 begin
-  new.qtd_imoveis := coalesce((select count(*) from imoveis where cpf_prop = new.cpf), 0);
+  if new.cpf is null or new.cpf = '' then
+    new.qtd_imoveis := 0;
+  else
+    new.qtd_imoveis := coalesce((select count(*) from imoveis where cpf_prop = new.cpf), 0);
+  end if;
   return new;
 end;
 $$ language plpgsql;
