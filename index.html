@@ -963,7 +963,9 @@ async function salvarTudo(){const linhas=(window._l||[]).map(x=>({'ID':x.id,'Com
  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'lancarRateio',linhas,divisores})});const d=await r.json();
   if(d.ok){const parts=[];if(d.inseridas)parts.push(d.inseridas+' novos');if(d.atualizadas)parts.push(d.atualizadas+' atualizados');
     $('#lm').textContent=(parts.join(' · ')||'nada a salvar')+' ✓';setSync('');toast('Rateio salvo: '+(parts.join(' · ')||'sem mudanças'));
-    await carregarPainel();renderStatusGrupo();}
+    // recarrega do servidor: window._l tinha os IDs provisórios gerados no
+    // navegador antes de salvar, e "Marcar copiado" precisa dos IDs reais
+    await carregarPainel();renderStatusGrupo();await abrirCompetencia(rComp);}
   else {$('#lm').textContent='Erro: '+(d.erro||'?');setSync('err');toast('Erro: '+(d.erro||'?'));}}catch(e){$('#lm').textContent='Falha.';setSync('err');}$('#ls').disabled=false;}
 
 const SERV=['Água','Luz','Manutenção','Gás','Outro'];
