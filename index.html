@@ -295,7 +295,7 @@ function grupos(){
   const usados=(cache['Imóveis']||[]).map(i=>String(i['Grupo']||'').trim());
   return [...new Set([...cat,...usados])].filter(x=>x&&!ehCompetencia(x)).sort((a,b)=>a.localeCompare(b,'pt-BR'));
 }
-function tabs(){$('#tabs').innerHTML='';Object.keys(ABAS).forEach(a=>{if(ABAS[a].soAdmin&&EU.cargo!=='admin')return;const b=document.createElement('button');b.className='tab'+(a===atual?' on':'');b.textContent=a;b.onclick=()=>{atual=a;$('#q').value='';sairSel();carregar();};$('#tabs').appendChild(b);});
+function tabs(){$('#tabs').innerHTML='';Object.keys(ABAS).forEach(a=>{if(ABAS[a].soAdmin&&EU.cargo!=='admin')return;const b=document.createElement('button');b.className='tab'+(a===atual?' on':'');b.textContent=a;b.onclick=()=>{atual=a;try{localStorage.setItem('vlz_aba',a);}catch(e){}$('#q').value='';sairSel();carregar();};$('#tabs').appendChild(b);});
  const c=ABAS[atual], esp=!!c.especial;
  $('#add').style.display=c.add?'block':'none';
  $('#selbtn').style.display=c.select?'block':'none';
@@ -665,8 +665,11 @@ async function salvar(){const c=ABAS[editando.aba],dados=coletar();$('#save').di
  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'salvar',aba:editando.aba,chaveCol:c.chave,chave:editando.item[c.chave],dados})});
   const d=await r.json();if(d.ok){Object.assign(editando.item,dados);$('#msg').textContent='Salvo ✓';render();setTimeout(fechar,500);}else $('#msg').textContent='Erro: '+(d.erro||'?');}catch(e){$('#msg').textContent='Falha.';}$('#save').disabled=false;}
 function novo(){const c=ABAS[atual];editando={item:{},aba:atual,novo:true};let h=`<div class="mhead"><div><h2>Novo ${c.titulo}</h2></div><button class="x" onclick="fechar()">×</button></div><div class="mbody">`;
- (c.novo||c.edit).forEach(campo=>{h+=`<div><label>${campo}</label><input data-c="${campo}"></div>`;});h+=`</div><div class="mfoot"><button class="save" id="save">Adicionar</button><span class="msg" id="msg"></span></div>`;
- $('#modal').innerHTML=h;$('#ov').classList.add('on');document.body.style.overflow='hidden';$('#save').onclick=adicionar;}
+ (c.novo||c.edit).forEach(campo=>{
+  if(atual==='Imóveis'&&campo==='Proprietário'){const props=(cache['Proprietários']||[]).map(p=>p['Proprietário']).filter(Boolean);h+=`<div><label>${campo}</label>`+combo('data-c="Proprietário"',props,'')+`</div>`;}
+  else h+=`<div><label>${campo}</label><input data-c="${campo}"></div>`;});
+ h+=`</div><div class="mfoot"><button class="save" id="save">Adicionar</button><span class="msg" id="msg"></span></div>`;
+ $('#modal').innerHTML=h;$('#ov').classList.add('on');document.body.style.overflow='hidden';wireCombos($('#modal'));$('#save').onclick=adicionar;}
 async function adicionar(){const dados=coletar();$('#save').disabled=true;$('#msg').textContent='Adicionando...';
  try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'adicionar',aba:atual,dados})});
   const d=await r.json();if(d.ok){cache[atual].push(Object.assign({_linha:d.linha},dados));$('#msg').textContent='Adicionado ✓';render();setTimeout(fechar,500);}else $('#msg').textContent='Erro: '+(d.erro||'?');}catch(e){$('#msg').textContent='Falha.';}$('#save').disabled=false;}
@@ -689,6 +692,7 @@ async function telaRateio(){
    <div id="rPainel" style="margin-top:10px"></div>
    <div id="rStatus" style="margin-top:8px"></div>
    <div id="rInfo" class="msg" style="margin-top:8px"></div>
+   <div id="rObs" style="margin-top:8px"></div>
    <div id="rHist" style="margin-top:8px"></div>
    <div style="margin-top:12px"><label>Contas do mês</label><div id="rConta"></div><button class="btn ghost" id="addC">+ conta</button></div>
    <div style="margin-top:12px"><button class="btn solid" id="rGer">Gerar por imóvel</button> <button class="btn ghost" id="rDup" title="copia as contas do mês anterior deste grupo, marcadas como cópia a revisar">⧉ duplicar mês anterior</button></div></div>
@@ -734,12 +738,54 @@ function renderC(){const b=$('#rConta');b.innerHTML='';contas.forEach((k,i)=>{co
  b.querySelectorAll('[data-dl]').forEach(e=>e.onclick=()=>{contas.splice(e.dataset.dl,1);if(!contas.length)contas.push({serv:'Água',valor:'',compl:'',divisor:''});renderC();});}
 async function carregarGrupo(){
  const g=$('#rG').value;carregarHistorico(g);renderStatusGrupo();
- if(!g){$('#rInfo').textContent='';grpItens=[];return;}
+ if(!g){$('#rInfo').textContent='';$('#rObs').innerHTML='';grpItens=[];return;}
  $('#rInfo').textContent='Carregando...';
  const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'imoveisGrupo',grupo:g})});
  const d=await r.json();grpItens=d.itens||[];const nc=grpItens.filter(x=>x.naoCobrar).length,loc=grpItens.filter(x=>x.status==='Locado').length;
  $('#rInfo').innerHTML=`${grpItens.length} imóveis no grupo · <b style="color:#5fd6a0">${loc} locados</b>${nc?` · ${nc} não cobrar`:''} · <span class="msg">divisor sugerido por conta abaixo</span>`;
+ obsLocked=true;renderObsGrupo(g,d.observacao||'');
  try{const dv=await aiPost({action:'divisoresGrupo',grupo:g});divMem=dv.divisores||{};renderC();}catch(e){divMem={};}}
+let obsLocked=true;
+function renderObsGrupo(g,texto){
+  const box=$('#rObs');if(!box)return;
+  if(obsLocked){
+    box.innerHTML=`<div class="card2" style="padding:8px 12px"><label>Observação do condomínio <button class="btn ghost" style="padding:1px 8px;font-size:11px;margin-left:6px" id="obsUnlock">🔒 destravar pra editar</button></label>
+      <div class="msg" style="margin-top:4px;white-space:pre-wrap">${texto?esq(texto):'<span style="color:var(--mut)">sem observação</span>'}</div></div>`;
+    $('#obsUnlock').onclick=()=>{obsLocked=false;renderObsGrupo(g,texto);};
+  } else {
+    box.innerHTML=`<div class="card2" style="padding:8px 12px"><label>Observação do condomínio</label>
+      <textarea id="obsTxt" style="width:100%;margin-top:4px;box-sizing:border-box" rows="3">${texto?esq(texto):''}</textarea>
+      <div style="margin-top:6px"><button class="btn solid" id="obsSalvar" style="padding:3px 10px;font-size:12px">Salvar</button>
+      <button class="btn ghost" id="obsCancelar" style="padding:3px 10px;font-size:12px">Cancelar</button></div></div>`;
+    $('#obsSalvar').onclick=async()=>{
+      const novo=$('#obsTxt').value;setSync('saving');
+      const r=await aiPost({action:'salvarObsGrupo',grupo:g,texto:novo});
+      if(r.ok){setSync('');toast('Observação salva.');obsLocked=true;renderObsGrupo(g,novo);}
+      else{setSync('err');toast('Erro: '+(r.erro||'?'));}
+    };
+    $('#obsCancelar').onclick=()=>{obsLocked=true;renderObsGrupo(g,texto);};
+  }
+}
+/* status (Locado/Vazio/Indisponível) direto na tela de Rateio, sem ir em Imóveis.
+   Imóvel Vazio conta como "copiado" automaticamente (nada pra copiar), mas continua na lista. */
+function statusDoImovel(cod){const im=grpItens.find(x=>String(x.cod)===String(cod));return im?im.status:'';}
+async function marcarVazioComoCopiado(cod){
+  const ids=(window._l||[]).filter(x=>String(x.cod)===String(cod)&&!x.copiado).map(x=>x.id);
+  if(ids.length)await aiPost({action:'toggleCopiadoLote',ids,valor:true});
+}
+async function cicloStatus(cod,el){
+  const atual=statusDoImovel(cod)||'Locado';
+  const novo=STATUS[(STATUS.indexOf(atual)+1)%STATUS.length];
+  el.disabled=true;setSync('saving');
+  const r=await aiPost({action:'salvar',aba:'Imóveis',chaveCol:'Cód Imóvel',chave:cod,dados:{Status:novo}});
+  if(r.ok){
+    const im=grpItens.find(x=>String(x.cod)===String(cod));if(im)im.status=novo;
+    const ci=(cache['Imóveis']||[]).find(x=>x['Cód Imóvel']===cod);if(ci)ci['Status']=novo;
+    if(novo==='Vazio')await marcarVazioComoCopiado(cod);
+    setSync('');toast('Status de #'+cod+' agora é '+novo+'.');
+    await abrirCompetencia(rComp);
+  } else {setSync('err');toast('Erro: '+(r.erro||'?'));el.disabled=false;}
+}
 function renderStatusGrupo(){
   const sel=$('#rG');const box=$('#rStatus');if(!box)return;
   const g=sel?sel.value:'';
@@ -819,7 +865,8 @@ async function abrirCompetencia(comp,semRecarregar){
   </div>`;
   Object.keys(porImovel).forEach(cod=>{
     const im=porImovel[cod];const first=im[0];const jaCop=String(first['Copiado']).trim()==='Sim';
-    h+=`<div class="imv${jaCop?' copiado':''}" id="i-${String(cod).replace(/\W/g,'')}"><div class="top"><span class="id">#${esq(cod)}</span><span class="end">${esq(first['Endereço']||'')}</span><button class="btn ghost" style="margin-left:auto" onclick="ct('${esq(cod)}')">Copiar tudo</button></div>`;
+    const st=statusDoImovel(cod)||'Locado';
+    h+=`<div class="imv${jaCop?' copiado':''}" id="i-${String(cod).replace(/\W/g,'')}"><div class="top"><span class="id">#${esq(cod)}</span><span class="end">${esq(first['Endereço']||'')}</span><button class="btn ghost" style="padding:1px 8px;font-size:12px" onclick="cicloStatus('${esq(cod)}',this)" title="clique pra mudar (Locado/Vazio/Indisponível)">${st}</button><button class="btn ghost" style="margin-left:auto" onclick="ct('${esq(cod)}')">Copiar tudo</button></div>`;
     im.forEach(x=>{
       const id=String(x['ID']||'');
       h+=`<div style="margin-bottom:6px;border-left:2px solid rgba(255,255,255,.06);padding-left:6px">
@@ -965,7 +1012,9 @@ async function salvarTudo(){const linhas=(window._l||[]).map(x=>({'ID':x.id,'Com
     $('#lm').textContent=(parts.join(' · ')||'nada a salvar')+' ✓';setSync('');toast('Rateio salvo: '+(parts.join(' · ')||'sem mudanças'));
     // recarrega do servidor: window._l tinha os IDs provisórios gerados no
     // navegador antes de salvar, e "Marcar copiado" precisa dos IDs reais
-    await carregarPainel();renderStatusGrupo();await abrirCompetencia(rComp);}
+    await carregarPainel();renderStatusGrupo();await abrirCompetencia(rComp);
+    const vazios=grpItens.filter(im=>im.status==='Vazio');
+    if(vazios.length){for(const im of vazios)await marcarVazioComoCopiado(im.cod);await abrirCompetencia(rComp);}}
   else {$('#lm').textContent='Erro: '+(d.erro||'?');setSync('err');toast('Erro: '+(d.erro||'?'));}}catch(e){$('#lm').textContent='Falha.';setSync('err');}$('#ls').disabled=false;}
 
 const SERV=['Água','Luz','Manutenção','Gás','Outro'];
@@ -1504,6 +1553,7 @@ $('#q').oninput=()=>{if(atual!=='Rateio')render();};$('#add').onclick=novo;$('#s
     if(bd.usuario)EU={usuario:bd.usuario,cargo:bd.cargo};
     else{try{const er=await aiPost({action:'eu'});if(er.ok){EU={usuario:er.usuario,cargo:er.cargo};}}catch(e){}} // fallback se o bootstrap não trouxer
     aplicarCargoUI();
+    try{const salva=localStorage.getItem('vlz_aba');if(salva&&ABAS[salva]&&!(ABAS[salva].soAdmin&&EU.cargo!=='admin'))atual=salva;}catch(e){} // lembra a aba entre um F5 e outro
     carregar();
   }catch(e){telaLogin();}
 })();

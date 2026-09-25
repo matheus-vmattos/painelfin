@@ -141,7 +141,8 @@ create table if not exists fornecedores (
 
 -- ── Grupos (condomínios) ───────────────────────────────────────────────
 create table if not exists grupos (
-  grupo text primary key
+  grupo text primary key,
+  observacao text  -- nota livre do condomínio (ex: regra fixa de zelador), ver schema_v4_obs_grupo.sql
 );
 
 -- ── Rateio (lançamentos) ───────────────────────────────────────────────

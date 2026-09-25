@@ -273,7 +273,13 @@ async function setGrupo(codigos: string[], grupo: string) {
 async function imoveisGrupo(grupo: string) {
   const rows = await sql`select id, cod_imovel, endereco, status, nao_cobrar from imoveis where grupo=${grupo}`;
   const itens = rows.map((r) => ({ id: r.id, cod: r.cod_imovel, endereco: r.endereco, status: r.status, naoCobrar: !!String(r.nao_cobrar || "").trim() }));
-  return { ok: true, grupo, itens, total: itens.length };
+  const g = await sql`select observacao from grupos where grupo=${grupo}`;
+  return { ok: true, grupo, itens, total: itens.length, observacao: g[0]?.observacao || "" };
+}
+async function salvarObsGrupo(grupo: string, texto: string) {
+  if (!grupo) return { ok: false, erro: "grupo obrigatorio" };
+  await sql`update grupos set observacao=${texto || ""} where grupo=${grupo}`;
+  return { ok: true };
 }
 async function limparGrupos() {
   // no schema novo, addGrupo() já bloqueia nome vazio/tipo-competência e
@@ -668,6 +674,7 @@ export async function handleRequest(req: Request): Promise<Response> {
     if (a === "setGrupo") return json(await setGrupo(b.codigos as string[], b.grupo as string));
     if (a === "addGrupo") return json(await addGrupo(b.grupo as string));
     if (a === "imoveisGrupo") return json(await imoveisGrupo(b.grupo as string));
+    if (a === "salvarObsGrupo") return json(await salvarObsGrupo(b.grupo as string, b.texto as string));
     if (a === "duplicados") return json(await duplicados());
     if (a === "imoveisProp") return json(await imoveisProp(b.cpf as string));
     if (a === "transferir") return json(await transferir(b.id as string, b.proprietario as string, b.cpf as string));
