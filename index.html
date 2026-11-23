@@ -952,7 +952,10 @@ function gerar(){
     let cobrado=0;
     grpItens.forEach(im=>{
       const val=Math.round(cota*100)/100;cobrado+=val;
-      linhas.push({id:`${comp}|${g}|${im.cod}|${k.serv}`,comp,grupo:g,cod:im.cod,end:im.endereco,serv:k.serv,valor:val,compl:k.compl||('Ref. '+comp),nc:im.naoCobrar});
+      // chave usa im.id (ID técnico único do imóvel), NUNCA im.cod: existem imóveis com
+      // o mesmo "Cód Imóvel" dentro do mesmo condomínio, e usar o código aqui fazia um
+      // lançamento sobrescrever o outro no "Salvar tudo" (sumia quantidade sem avisar).
+      linhas.push({id:`${comp}|${g}|IM${im.id}|${k.serv}`,comp,grupo:g,cod:im.cod,end:im.endereco,serv:k.serv,valor:val,compl:k.compl||('Ref. '+comp),nc:im.naoCobrar});
     });
     // se o divisor é MAIOR que o nº de imóveis, o excedente vai pro proprietário
     const exc=Math.round((pn(k.valor)-cobrado)*100)/100;
