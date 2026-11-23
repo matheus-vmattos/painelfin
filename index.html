@@ -946,7 +946,15 @@ function gerar(){
   if(!g||!grpItens.length){$('#rOut').innerHTML='<div class="msg">Escolha um condomínio com imóveis.</div>';return;}
   const vc=contas.filter(k=>pn(k.valor)>0);if(!vc.length){$('#rOut').innerHTML='<div class="msg">Informe ao menos uma conta com valor.</div>';return;}
   const linhas=[];let avisoDiv='';
+  // quando há MAIS DE UMA conta do mesmo serviço (ex: duas "Manutenção" no mesmo
+  // mês), dá um sufixo #2, #3... só na CHAVE interna — sem isso as duas contas
+  // geravam a mesma chave e a segunda sobrescrevia a primeira no "Salvar tudo"
+  // (sumia uma delas sem avisar). A 1ª ocorrência fica sem sufixo (compatível
+  // com o que já estava salvo antes desta correção).
+  const servCount={};
   vc.forEach(k=>{
+    servCount[k.serv]=(servCount[k.serv]||0)+1;
+    const servChave=servCount[k.serv]>1?`${k.serv}#${servCount[k.serv]}`:k.serv;
     const div=parseInt(k.divisor,10)||grpItens.length; // divisor da conta (ou nº de imóveis)
     const cota=pn(k.valor)/div;
     let cobrado=0;
@@ -955,12 +963,12 @@ function gerar(){
       // chave usa im.id (ID técnico único do imóvel), NUNCA im.cod: existem imóveis com
       // o mesmo "Cód Imóvel" dentro do mesmo condomínio, e usar o código aqui fazia um
       // lançamento sobrescrever o outro no "Salvar tudo" (sumia quantidade sem avisar).
-      linhas.push({id:`${comp}|${g}|IM${im.id}|${k.serv}`,comp,grupo:g,cod:im.cod,end:im.endereco,serv:k.serv,valor:val,compl:k.compl||('Ref. '+comp),nc:im.naoCobrar});
+      linhas.push({id:`${comp}|${g}|IM${im.id}|${servChave}`,comp,grupo:g,cod:im.cod,end:im.endereco,serv:k.serv,valor:val,compl:k.compl||('Ref. '+comp),nc:im.naoCobrar});
     });
     // se o divisor é MAIOR que o nº de imóveis, o excedente vai pro proprietário
     const exc=Math.round((pn(k.valor)-cobrado)*100)/100;
     if(Math.abs(exc)>=0.01){
-      linhas.push({id:`${comp}|${g}|PROPRIETARIO|${k.serv}`,comp,grupo:g,cod:'(proprietário)',end:'Excedente absorvido pelo proprietário',serv:k.serv,valor:exc,compl:'Excedente '+k.serv+' (divisor '+div+')',nc:false,exc:true});
+      linhas.push({id:`${comp}|${g}|PROPRIETARIO|${servChave}`,comp,grupo:g,cod:'(proprietário)',end:'Excedente absorvido pelo proprietário',serv:k.serv,valor:exc,compl:'Excedente '+k.serv+' (divisor '+div+')',nc:false,exc:true});
       avisoDiv+=`${k.serv}: divisor ${div}, ${grpItens.length} imóveis, proprietário absorve ${money(exc)}. `;
     }
   });
